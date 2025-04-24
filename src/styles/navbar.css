@@ -1,0 +1,7 @@
+/* src/styles/navbar.css */
+.btn-active {
+    font-weight: bold;
+    background-color: #2563eb; /* biru */
+    color: white;
+  }
+  
