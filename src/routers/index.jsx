@@ -6,10 +6,12 @@ import Riview from "../pages/Review";
 import About from "../pages/About"
 import Comparison from "../pages/Comparison";
 import Loginpage from "../pages/Loginpage";
+import ErrorPage from "../pages/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout/>,
+    errorElement: <ErrorPage/>,
     children : [
       {
         path : "/",
