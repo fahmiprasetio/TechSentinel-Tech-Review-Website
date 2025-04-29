@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion'; //buat animasi hurufnya
+import { motion } from 'framer-motion'; // untuk animasi hurufnya
+import { useInView } from 'react-intersection-observer'; // untuk deteksi scroll
 import topLaptops2025 from '../data/topLaptops2025';
 
 const Homepage = () => {
@@ -14,6 +15,12 @@ const Homepage = () => {
       console.error('Error saat mencari produk:', error);
     }
   };
+
+  // Hook Intersection Observer
+  const { ref: chooseUsRef, inView: chooseUsInView } = useInView({
+    triggerOnce: true,  // Animasi hanya sekali
+    threshold: 0.1,     // Trigger saat 10% elemen terlihat
+  });
 
   return (
     <div className="flex flex-col items-center justify-between min-h-screen px-4 text-center">
@@ -65,6 +72,69 @@ const Homepage = () => {
         </button>
       </div>
 
+      {/* Section Kategori: Headphone, Laptop, Phone */}
+      <div
+        className="w-full max-w-5xl mt-10 bg-white bg-opacity-5 border border-white border-opacity-80 rounded-2xl overflow-hidden"
+        style={{
+          backgroundImage: `url('/Background-4.2.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="flex flex-wrap justify-evenly sm:p-4 lg:p-6 w-full">
+
+          {/* Headphone */}
+          <div className="flex flex-col items-center bg-white bg-opacity-10 border border-white border-opacity-80 backdrop-blur-md rounded-2xl sm:p-4 p-0 flex-1 sm:mx-4 mx-3 hover:scale-105 transition-transform"
+            style={{
+              boxShadow: '0px 8px 24px rgba(5, 5, 10, 0.4)'
+            }}>
+            <img src="/headphone-noBg3.png" alt="Headphone" className="w-50 h-50 mb-1 drop-shadow-2xl" />
+            <h3 className="text-white text-lg font-semibold mb-5">Headphone</h3>
+          </div>
+
+          {/* Laptop */}
+          <div className="flex flex-col items-center bg-white bg-opacity-10 border border-white border-opacity-80 backdrop-blur-md rounded-2xl sm:p-4 p-0 flex-1 sm:mx-4 mx-3 hover:scale-105 transition-transform"
+            style={{
+              boxShadow: '0px 8px 24px rgba(5, 5, 10, 0.4)'
+            }}>
+            <img src="/laptop-noBg3.png" alt="Laptop" className="w-50 h-50 mb-1 drop-shadow-2xl" />
+            <h3 className="text-white text-lg font-semibold mb-5">Laptop</h3>
+          </div>
+
+          {/* Phone */}
+          <div className="flex flex-col items-center bg-white bg-opacity-10 border border-white border-opacity-80 backdrop-blur-md rounded-2xl sm:p-4 p-0 flex-1 sm:mx-4 mx-3 hover:scale-105 transition-transform"
+            style={{
+              boxShadow: '0px 8px 24px rgba(5, 5, 10, 0.4)'
+            }}>
+            <img src="/phone-noBg3.png" alt="Phone" className="w-50 h-50 mb-1 drop-shadow-2xl" />
+            <h3 className="text-white text-lg font-semibold mb-5">Phone</h3>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Section Why Choose Us */}
+      <div className="w-full max-w-5xl mt-10 text-center sm:px-4 px-6" ref={chooseUsRef}>
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }} // Awal: transparan dan turun 50px
+          animate={{ opacity: chooseUsInView ? 1 : 0, y: chooseUsInView ? 0 : 50 }}   // Animasi ke: muncul dan posisi normal
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Durasi dan jenis easing
+          className="font-poppins text-white text-2xl sm:text-4xl md:text-5xl mt-8 font-semibold mb-4"
+        >
+          Why Choose Us?
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: chooseUsInView ? 1 : 0, y: chooseUsInView ? 0 : 50 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
+          className="text-white text-sm sm:text-lg md:text-lg mb-8 max-w-5xl font-light"
+        >
+          We provide expert, data-driven reviews to help you make the best technology choices.
+          Our comprehensive analysis ensures you get the most accurate, up-to-date information on products to help you decide with confidence.
+        </motion.p>
+      </div>
+
       {/* Card Section */}
       <div className="w-full max-w-5xl mt-10 bg-white bg-opacity-5 border border-white border-opacity-30 rounded-2xl overflow-x-auto">
         <div className="flex space-x-6 p-6 min-w-max">
@@ -90,7 +160,6 @@ const Homepage = () => {
           ))}
         </div>
       </div>
-
 
     </div>
   );
