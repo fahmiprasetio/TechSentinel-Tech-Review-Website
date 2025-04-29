@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <div
         className="fixed top-0 left-0 w-full h-full -z-10"
         style={{
-          backgroundImage: "url('/Background-3.png')",
+          backgroundImage: "url('/Background-4.png')",
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
