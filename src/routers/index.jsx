@@ -1,4 +1,4 @@
-import RootLayout from "../layouts/layoutnavbar";
+import RootLayout from "../layouts/layout";
 import { createBrowserRouter } from "react-router-dom";
 
 import Homepage from "../pages/Homepage";

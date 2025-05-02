@@ -4,7 +4,7 @@ import "../styles/navbar.css";
 function RootLayout() {
   return (
     <>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="fixed top-0 left-0 w-full z-50 navbar bg-base-200 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div
