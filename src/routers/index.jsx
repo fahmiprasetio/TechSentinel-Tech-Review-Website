@@ -7,6 +7,7 @@ import About from "../pages/About"
 import Comparison from "../pages/Comparison";
 import Loginpage from "../pages/Loginpage";
 import ErrorPage from "../pages/ErrorPage";
+import RegisterPage from "../pages/RegisterPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
         element: <Loginpage/>,
         
       },
+      {
+        path: "/RegisterPage",
+        element: <RegisterPage/>,
+      }
     //   {
     //     path: "/blog/:id",
     //     element: <Post/>,
