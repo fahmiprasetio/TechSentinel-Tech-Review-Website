@@ -1,27 +1,40 @@
-import React from 'react'
-
+import React, { useEffect, useState } from "react";
+import ProductCard from "../components/ProductCard";
 
 const Riview = () => {
+  const [Data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/Laptop");
+        // console.log(response);
+        const data = await response.json();
+        // console.log(data.data);
+        setData(data);
+      } catch (err) {
+        console.error("Error fetching data", err);
+      }
+    };
+    fetchdata();
+  }, []);
+
   return (
     <>
-    <div className='navbar-start mb-5'>
-      <button className='btn  bg-red-500'>hai</button>
-
-    </div>
-    <div className="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">Card Title</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-
-  </div>
-</div>
+      <div className="grid grid-cols-3 place-item-center gap-y-5 mt-6 ">
+        {Data.map((data, index) => {
+          return (
+            <ProductCard
+              key={index}
+              title={data.name}
+              description={data.description}
+              image={data.image}
+            />
+          );
+        })}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Riview
+export default Riview;
