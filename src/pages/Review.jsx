@@ -34,7 +34,7 @@ const Riview = () => {
   const categories = [...new Set(data.map((item) => item.category))];
 
   return (
-    <div className="px-4">
+    <div className="px-4 ">
       <CategoryFilterButton
         categories={categories}
         activeCategory={activeCategory}
