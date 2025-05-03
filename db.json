@@ -1,5 +1,5 @@
 {
-  "Laptop": [
+  "products": [
     {
       "id": 1,
       "name": "HP 14 Series",
@@ -8,7 +8,8 @@
       "price": "IDR 6.700.000",
       "link": "/products/hp-14",
       "description": "Laptop entry-level yang cocok untuk pelajar dan pekerja kantoran dengan performa cukup untuk tugas sehari-hari.",
-      "category": "Entry-Level",
+      "subcategory": "Entry-Level",
+      "category": "Laptop",
       "author": "Pandu Nugraha Saputra",
       "date": "2025-04-29"
     },
@@ -20,7 +21,8 @@
       "price": "IDR 16.800.000",
       "link": "/products/macbook-air-m4",
       "description": "Laptop premium dengan chip Apple M4 terbaru, performa tinggi dan efisiensi daya luar biasa.",
-      "category": "Ultrabook",
+      "subcategory": "Ultrabook",
+      "category": "Laptop",
       "author": "Pandu Nugraha Saputra",
       "date": "2025-04-29"
     },
@@ -32,7 +34,8 @@
       "price": "IDR 13.500.000",
       "link": "/products/acer-swift-go",
       "description": "Laptop tipis dan ringan dengan fitur AI terintegrasi, cocok untuk produktivitas dan mobilitas tinggi.",
-      "category": "AI Laptop",
+      "subcategory": "AI Laptop",
+      "category": "Laptop",
       "author": "Pandu Nugraha Saputra",
       "date": "2025-04-29"
     },
@@ -44,7 +47,8 @@
       "price": "IDR 25.300.000",
       "link": "/products/rog-zephyrus-g14",
       "description": "Laptop gaming premium dengan performa tinggi dan desain portabel, cocok untuk gamer dan kreator konten.",
-      "category": "Gaming",
+      "subcategory": "Gaming",
+      "category": "Laptop",
       "author": "Pandu Nugraha Saputra",
       "date": "2025-04-29"
     },
@@ -56,7 +60,60 @@
       "price": "IDR 30.300.000",
       "link": "/products/thinkpad-x1-carbon-gen13",
       "description": "Laptop bisnis kelas atas dengan build quality premium dan fitur keamanan canggih.",
-      "category": "Business",
+      "subcategory": "Business",
+      "category": "Laptop",
+      "author": "Pandu Nugraha Saputra",
+      "date": "2025-04-29"
+    },
+    {
+      "id": 6,
+      "name": "iPhone 15 Pro Max",
+      "image": "https://gizmologi.id/wp-content/uploads/2023/12/iPhone-15-Pro-Max-205-860x484.jpg",
+      "rating": 4.9,
+      "price": "IDR 24.999.000",
+      "link": "/products/iphone-15-pro-max",
+      "description": "Smartphone flagship dari Apple dengan kamera canggih dan performa A17 Pro chip.",
+      "subcategory": "Flagship",
+      "category": "Handphone",
+      "author": "Pandu Nugraha Saputra",
+      "date": "2025-04-29"
+    },
+    {
+      "id": 7,
+      "name": "Samsung Galaxy A55",
+      "image": "https://img.global.news.samsung.com/id/wp-content/uploads/2024/08/05143745/A55-headline-1000x563.jpg",
+      "rating": 4.6,
+      "price": "IDR 5.499.000",
+      "link": "/products/galaxy-a55",
+      "description": "Handphone kelas menengah dengan performa solid dan layar Super AMOLED 120Hz.",
+      "subcategory": "Mid-Range",
+      "category": "Handphone",
+      "author": "Pandu Nugraha Saputra",
+      "date": "2025-04-29"
+    },
+    {
+      "id": 8,
+      "name": "Sony WH-1000XM5",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOin4H3cvaJfZ_7DC9S-F5BS9Da74LbRRV2w&s",
+      "rating": 4.8,
+      "price": "IDR 5.200.000",
+      "link": "/products/sony-wh-1000xm5",
+      "description": "Headphone wireless dengan noise cancellation terbaik dan kualitas suara premium.",
+      "subcategory": "Premium",
+      "category": "Headphone",
+      "author": "Pandu Nugraha Saputra",
+      "date": "2025-04-29"
+    },
+    {
+      "id": 9,
+      "name": "JBL Tune 510BT",
+      "image": "https://jblstore.com.ph/cdn/shop/products/TUNE510_Blue.jpg?v=1745192755",
+      "rating": 4.5,
+      "price": "IDR 699.000",
+      "link": "/products/jbl-tune-510bt",
+      "description": "Headphone Bluetooth ringan dengan suara bass mantap dan harga terjangkau.",
+      "subcategory": "Budget",
+      "category": "Headphone",
       "author": "Pandu Nugraha Saputra",
       "date": "2025-04-29"
     }

@@ -1,25 +1,22 @@
 import React from "react";
 
-const ProductCard = ({ title, description, image }) => {
+const ProductCard = ({ title, description, image, category }) => {
   return (
-    <>
-      <div className="card bg-base-100 w-96 shadow-sm">
-        <figure>
-          <img className="w-96 h-80" src={image} alt="Shoes" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            {title}
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
-          <p>{description}</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
+    <div className="card bg-base-100 w-full max-w-sm shadow-md">
+      <figure className="w-full h-60 object-cover rounded-t-lg">
+        <img className=" w-full h-full object-cover " src={image} alt={title} />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title text-lg font-semibold">
+          {title}
+          <span className="badge badge-secondary">NEW</span>
+        </h2>
+        <p className="text-sm">{description}</p>
+        <div className="card-actions justify-end mt-2">
+          <div className="badge badge-outline">{category}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
