@@ -95,7 +95,7 @@ function RootLayout() {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="pt-20 px-6">
         <Outlet />
       </div>
     </>
