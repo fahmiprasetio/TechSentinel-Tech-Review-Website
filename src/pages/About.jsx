@@ -1,11 +1,83 @@
-import React from 'react'
+import React from "react";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <div>
-      Ini halaman About
-    </div>
-  )
-}
+    <div className="flex flex-col items-center justify-center font-poppins">
+      {/* Konten utama */}
+      <div className="flex items-center justify-center min-h-[80vh] px-4 w-full">
+        <div className="text-center max-w-5xl w-full">
+          <h1 className="lg:text-5xl sm:text-5xl md:text-6xl font-semibold text-white mb-6">
+            About Us
+          </h1>
 
-export default About
+          <div className="w-1/4 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/2 h-1 bg-white mx-auto mb-6 rounded-full transition-all duration-300 ease-in-out"></div>
+
+          <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-xl leading-relaxed px-2 sm:px-6 font-thin">
+            <strong>Tech Sentinel</strong> is a platform dedicated to providing
+            data-driven technology analysis to assist users in finding the best
+            tech products based on their needs. We are committed to delivering
+            accurate, objective, and transparent product reviews.
+          </p>
+        </div>
+      </div>
+
+      {/* ini bagian section slogannya */}
+      <motion.div
+        className="relative z-10 mt-20 mb-4 w-full"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <img
+          src="/section-slogan.png"
+          alt="Section Slogan"
+          className="h-auto block"
+          style={{ marginLeft: "-24px" }}
+        />
+      </motion.div>
+
+      {/* Gambar gradien */}
+      <div className="w-screen -mt-40 sm:-mt-48 md:-mt-56 lg:-mt-64 xl:-mt-[500px]">
+        <img
+          src="/gradient-hitam1.png"
+          alt="Gradient"
+          className="w-full h-auto block"
+        />
+      </div>
+
+      {/* Section Vision & Mission */}
+      <div className="flex flex-col md:flex-row items-center md:items-center justify-between w-full px-4 md:px-0 pt-4 md:pt-0 max-w-7xl mx-auto gap-8 md:-mt-52 lg:-mt-72 xl:-mt-[500px]">
+        {/* Text kiri */}
+        <div className="text-white text-justify max-w-xl self-center md:self-center md:pl-8">
+          <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
+          <p className="text-base md:text-lg leading-relaxed mb-6 font-light">
+            To become the most trusted and comprehensive source for technology
+            reviews and comparisons, empowering users to make informed,
+            confident, and smarter purchasing decisions.
+          </p>
+          <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
+          <p className="text-base md:text-lg leading-relaxed font-light">
+            At Tech Sentinel, we provide honest, accurate, and detailed insights
+            to simplify the process of choosing tech products. Our unbiased
+            reviews and expert comparisons ensure users find the perfect device
+            for their needs.
+          </p>
+        </div>
+
+        {/* Gambar kanan */}
+        <div className="w-fit md:pl-4">
+          <img
+            src="/grup-barang.png"
+            alt="Product Showcase"
+            className="h-auto block"
+            style={{ maxWidth: "580px", marginRight: "-32px" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default About;
