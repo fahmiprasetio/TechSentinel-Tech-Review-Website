@@ -49,6 +49,7 @@ const Riview = () => {
             description={item.description}
             image={item.image}
             category={item.category}
+            date={item.date}
           />
         ))}
       </div>
