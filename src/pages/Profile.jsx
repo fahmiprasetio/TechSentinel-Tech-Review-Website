@@ -5,7 +5,7 @@ const ProfilePage = () => {
   const user = {
     name: "John Doe",
     email: "john.doe@example.com",
-    photoUrl: "https://via.placeholder.com/150", // Ganti dengan URL foto user
+    photoUrl: "https://via.placeholder.com/150",
     articles: [
       { id: 1, title: "Artikel Pertama", date: "2025-05-01" },
       { id: 2, title: "Artikel Kedua", date: "2025-04-15" },
