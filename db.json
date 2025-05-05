@@ -117,5 +117,19 @@
       "author": "Pandu Nugraha Saputra",
       "date": "2025-04-29"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "agata",
+      "email": "agata@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": 2,
+      "name": "fahmi",
+      "email": "fahmi@gmail.com",
+      "password": "1234"
+    }
   ]
 }

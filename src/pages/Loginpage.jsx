@@ -1,21 +1,46 @@
-import React from "react";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import axios from "axios";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.get("http://localhost:5000/users", {
+        params: {
+          email,
+          password,
+        },
+      });
+
+      if (response.data.length > 0) {
+        // Simpan data login dan user di localStorage
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("user", JSON.stringify(response.data[0])); // Simpan data user (misalnya, email)
+
+        navigate("/"); // Arahkan ke Homepage setelah login berhasil
+      } else {
+        alert("Email atau password salah!");
+      }
+    } catch (error) {
+      console.error("Login error: ", error);
+      alert("Terjadi kesalahan server!");
+    }
+  };
+
   return (
-    <div
-      className="min-h-screen bg-cover bg-center relative flex items-center justify-center px-4"
-      style={{ backgroundImage: "url('/public/bg-login.png')" }}
-    >
-      {/* Overlay */}
+    <div className="min-h-screen bg-cover bg-center relative flex items-center justify-center px-4" style={{ backgroundImage: "url('/bg-login.png')" }}>
       <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
 
-      {/* Form Card */}
       <div className="relative z-10 bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">
-          Login
-        </h2>
-        <form className="space-y-5">
+        <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Login</h2>
+        <form className="space-y-5" onSubmit={handleLogin}>
           <div>
             <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
               Email
@@ -27,6 +52,8 @@ const LoginPage = () => {
                 id="email"
                 className="w-full outline-none bg-transparent"
                 placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
@@ -42,6 +69,8 @@ const LoginPage = () => {
                 id="password"
                 className="w-full outline-none bg-transparent"
                 placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>

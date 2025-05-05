@@ -1,17 +1,25 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import "../styles/navbar.css";
 
 function RootLayout() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"; // Cek status login di localStorage
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn && window.location.pathname !== "/Loginpage") {
+      navigate("/");
+    } else if (isLoggedIn && window.location.pathname === "/Loginpage") {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-50 navbar bg-base-200 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -19,13 +27,12 @@ function RootLayout() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h16M4 18h7"
-                />{" "}
+                />
               </svg>
             </div>
             <ul
@@ -33,12 +40,9 @@ function RootLayout() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                {" "}
                 <NavLink
                   to="/"
-                  className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""}`
-                  }
+                  className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
                 >
                   Homepage
                 </NavLink>
@@ -46,34 +50,26 @@ function RootLayout() {
               <li>
                 <NavLink
                   to="/Riview"
-                  className={({ isActive }) =>
-                    ` ${isActive ? "btn-active" : ""}`
-                  }
+                  className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
                 >
                   Review
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/comparison"
-                className={({isActive})=> 
-                `${isActive ? 'btn-active': ""}`
-                }
+                <NavLink
+                  to="/comparison"
+                  className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
                 >
                   Comparison
-                  
                 </NavLink>
-                
               </li>
               <li>
-                <NavLink to="/about"
-                className={({isActive})=> 
-                `${isActive ? 'btn-active': ""}`
-                }
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
                 >
                   About
-                  
                 </NavLink>
-                
               </li>
             </ul>
           </div>
@@ -82,16 +78,17 @@ function RootLayout() {
           <a className="btn btn-ghost text-xl">TechSentinel</a>
         </div>
         <div className="navbar-end">
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <NavLink to="/Loginpage">
-        <div className="w-10 rounded-full bg-white">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src="https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png" />
-            
-        </div>
-        </NavLink>
-        </div>
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+            {/* Jika sudah login, arahkan ke profile page */}
+            <NavLink to={isLoggedIn ? "/ProfilePage" : "/Loginpage"}>
+              <div className="w-10 rounded-full bg-white">
+                <img
+                  alt="Profile"
+                  src="https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"
+                />
+              </div>
+            </NavLink>
+          </div>
         </div>
       </div>
 
@@ -103,50 +100,3 @@ function RootLayout() {
 }
 
 export default RootLayout;
-
-// export default Homepage
-// {/* <div className="navbar bg-base-100 shadow-md px-6">
-//   <div className="flex-1">
-// <NavLink to="/" className="btn btn-ghost normal-case text-xl">
-//   Tech Sentinel
-// </NavLink>
-//   </div>
-
-//   {/* Tambahkan div baru khusus untuk menu tengah */}
-//   <div className="flex-none mx-auto hidden md:flex gap-2">
-// <NavLink
-//   to="/"
-//   className={({ isActive }) =>
-//     `btn btn-sm btn-outline btn-primary ${isActive ? "btn-active" : ""}`
-//   }
-// >
-//   Homepage
-// </NavLink>
-//     <NavLink
-//       to="/about"
-//       className={({ isActive }) =>
-//         `btn btn-sm btn-outline btn-primary ${isActive ? "btn-active" : ""}`
-//       }
-//     >
-//       About
-//     </NavLink>
-// <NavLink
-//   to="/review"
-//   className={({ isActive }) =>
-//     `btn btn-sm btn-outline btn-primary ${isActive ? "btn-active" : ""}`
-//   }
-// >
-//   Review
-// </NavLink>
-//     <NavLink
-//       to="/comparison"
-//       className={({ isActive }) =>
-//         `btn btn-sm btn-outline btn-primary ${isActive ? "btn-active" : ""}`
-//       }
-//     >
-//       Comparison
-//     </NavLink>
-//   </div>
-
-//   <div className="flex-1"></div> {/* Spacer kanan biar menu tetap di tengah */}
-// </div> */}
