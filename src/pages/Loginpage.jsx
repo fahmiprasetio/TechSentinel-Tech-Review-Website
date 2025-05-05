@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -85,9 +87,10 @@ const LoginPage = () => {
 
         <p className="text-center text-gray-600 mt-6">
           Belum punya akun?{" "}
-          <a href="/RegisterPage" className="text-blue-600 hover:underline font-semibold">
-            Daftar di sini
-          </a>
+          <Link to="/RegisterPage" className="text-blue-600 hover:underline font-semibold">
+          Daftar di sini
+          </Link>
+
         </p>
       </div>
     </div>

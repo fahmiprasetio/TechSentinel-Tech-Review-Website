@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -108,9 +109,10 @@ const RegisterPage = () => {
 
         <p className="text-center text-gray-600 mt-6">
           Sudah punya akun?{" "}
-          <a href="/LoginPage" className="text-blue-600 hover:underline font-semibold">
-            Login di sini
-          </a>
+          <Link to="/LoginPage" className="text-blue-600 hover:underline font-semibold">
+  Login Di sini
+</Link>
+
         </p>
       </div>
     </div>
