@@ -11,7 +11,14 @@ const About = () => {
             About Us
           </h1>
 
-          <div className="w-1/4 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/2 h-1 bg-white mx-auto mb-6 rounded-full transition-all duration-300 ease-in-out"></div>
+          <motion.div
+            className="h-1 bg-white mx-auto mb-6 rounded-full w-1/4 sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/2"
+            style={{ originX: 0.5 }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          />
+
 
           <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-xl leading-relaxed px-2 sm:px-6 font-thin">
             <strong>Tech Sentinel</strong> is a platform dedicated to providing
@@ -22,7 +29,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* ini bagian section slogannya */}
       <motion.div
         className="relative z-10 mt-20 mb-4 w-full"
         initial={{ opacity: 0, y: 40 }}
@@ -48,7 +54,7 @@ const About = () => {
       </div>
 
       {/* Section Vision & Mission */}
-      <div className="flex flex-col md:flex-row items-center md:items-center justify-between w-full px-4 md:px-0 pt-4 md:pt-0 max-w-7xl mx-auto gap-8 md:-mt-52 lg:-mt-72 xl:-mt-[500px]">
+      <div className="flex flex-col md:flex-row items-center md:items-center justify-between w-full px-4 md:px-0 pt-4 md:pt-0 max-w-7xl mx-auto gap-8 -mt-40 md:-mt-52 lg:-mt-72 xl:-mt-[500px]">
         {/* Text kiri */}
         <div className="text-white text-justify max-w-xl self-center md:self-center md:pl-8">
           <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
@@ -76,6 +82,26 @@ const About = () => {
           />
         </div>
       </div>
+
+{/* Layer tumpuk: Gradien + Gambar makna-logo */}
+<div className="relative w-screen -mt-40 sm:-mt-48 md:-mt-56 lg:-mt-24">
+  {/* Gambar gradien sebagai latar belakang */}
+  <img
+    src="/gradient-4.png"
+    alt="Gradient"
+    className="w-full mt-52 h-[50vh] lg:h-[100vh] sm:h-[10vh] md:h-[10vh]  block"
+  />
+
+  {/* Gambar makna-logo di atas gradien */}
+  <img
+    src="/makna-logo.png"
+    alt="Makna Logo"
+    className="absolute top-96 lg:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-5xl "
+  />
+</div>
+
+
+
     </div>
   );
 };
