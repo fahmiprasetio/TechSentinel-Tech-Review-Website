@@ -47,7 +47,7 @@ const ProfilePage = () => {
       <div className="bg-white rounded-xl shadow-lg w-full max-w-lg p-6 text-center">
         <div className="relative mb-4">
           <img
-            src="https://www.w3schools.com/w3images/avatar2.png" // Gambar profile pengguna
+            src="https://www.w3schools.com/w3images/avatar2.png"
             alt="Avatar"
             className="w-32 h-32 rounded-full mx-auto border-4 border-white -mt-16"
           />

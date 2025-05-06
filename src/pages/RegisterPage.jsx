@@ -26,7 +26,6 @@ const RegisterPage = () => {
       return;
     }
 
-    // Simpan ke localStorage (simulasi pendaftaran)
     localStorage.setItem("user", JSON.stringify(form));
     alert("Registrasi berhasil! Silakan login.");
     navigate("/LoginPage");

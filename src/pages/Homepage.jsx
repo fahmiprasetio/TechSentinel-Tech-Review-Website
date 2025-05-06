@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion'; // untuk animasi hurufnya
-import { useInView } from 'react-intersection-observer'; // untuk deteksi scroll
+import { motion } from 'framer-motion'; 
+import { useInView } from 'react-intersection-observer'; 
 import topLaptops2025 from '../data/topLaptops2025';
 
 const Homepage = () => {
@@ -18,17 +18,17 @@ const Homepage = () => {
 
   // Hook Intersection Observer
   const { ref: chooseUsRef, inView: chooseUsInView } = useInView({
-    triggerOnce: true,  // Animasi hanya sekali
-    threshold: 0.1,     // Trigger saat 10% elemen terlihat
+    triggerOnce: true, 
+    threshold: 0.1,    
   });
 
   return (
     <div className="flex flex-col items-center justify-between min-h-screen px-4 text-center">
       {/* Headline */}
       <motion.h1
-        initial={{ opacity: 0, y: 50 }} // Awal: transparan dan turun 50px
-        animate={{ opacity: 1, y: 0 }}   // Animasi ke: muncul dan posisi normal
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Durasi dan jenis easing
+        initial={{ opacity: 0, y: 50 }} 
+        animate={{ opacity: 1, y: 0 }}   
+        transition={{ duration: 0.5, ease: 'easeOut' }} 
         className="font-poppins text-white text-2xl mt-32 sm:text-4xl md:text-5xl font-semibold mb-4"
         style={{ lineHeight: '1.1' }}
       >
