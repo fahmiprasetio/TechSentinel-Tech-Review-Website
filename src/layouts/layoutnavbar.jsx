@@ -75,7 +75,9 @@ function RootLayout() {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">TechSentinel</a>
+           <NavLink to="/" className="btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none">
+           TechSentinel
+            </NavLink> 
         </div>
         <div className="navbar-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

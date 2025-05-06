@@ -9,7 +9,7 @@ const ErrorPage = () => {
         <div className="w-full lg:w-1/2">
           <p className="text-sm font-medium text-blue-500 dark:text-blue-400">
             404 error
-          </p>
+          </p>  
           <h1 className="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
             Page not found
           </h1>
