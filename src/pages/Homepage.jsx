@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion'; 
 import { useInView } from 'react-intersection-observer'; 
 import topLaptops2025 from '../data/topLaptops2025';
+import { Link } from 'react-router-dom';
 
 const Homepage = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -80,7 +81,7 @@ const Homepage = () => {
 
       {/* Section Kategori: Headphone, Laptop, Phone */}
       <div
-        className="w-full max-w-5xl mt-10 bg-white bg-opacity-5 border border-white border-opacity-80 rounded-2xl overflow-hidden"
+        className="w-full max-w-5xl mt-10 bg-white bg-opacity-5 border border-white border-opacity-80 rounded-2xl overflow-hidden py-5 lg:py-0"
         style={{
           backgroundImage: `url('/Background-4.2.png')`,
           backgroundSize: 'cover',
@@ -192,6 +193,26 @@ const Homepage = () => {
           ))}
         </div>
       </div>
+
+{/* button see more */}
+<div className="flex justify-end mt-6 px-6 -mb-2">
+  <Link
+    to="/riview"
+    className="flex items-center px-4 py-2 border border-white text-white text-sm rounded-lg hover:bg-white hover:text-black transition-colors"
+  >
+    See More
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 ml-2"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+    </svg>
+  </Link>
+</div>
+
 
     </div>
   );

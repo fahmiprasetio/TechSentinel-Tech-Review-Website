@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 const About = () => {
   return (
     <div className="flex flex-col items-center justify-center font-poppins">
+
       {/* Konten utama */}
-      <div className="flex items-center justify-center min-h-[80vh] px-4 w-full">
+      <div className="flex items-center justify-center min-h-[50vh] lg:min-h-[80vh] px-4 w-full">
         <div className="text-center max-w-5xl w-full">
-          <h1 className="lg:text-5xl sm:text-5xl md:text-6xl font-semibold text-white mb-6"
+          <h1 className="text-3xl lg:text-5xl sm:text-5xl md:text-6xl font-semibold text-white mb-6"
             style={{ 
               textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
             }}>
@@ -23,7 +24,7 @@ const About = () => {
           />
 
 
-          <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-xl leading-relaxed px-2 sm:px-6 font-thin"
+          <p className="text-white text-sm sm:text-xl md:text-2xl lg:text-xl leading-relaxed px-2 sm:px-6 font-thin"
           style={{ 
             textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
           }}>
@@ -36,7 +37,7 @@ const About = () => {
       </div>
 
       <motion.div
-        className="relative z-10 mt-20 mb-4 w-full"
+        className="relative z-10 mt-10 lg:mt-20 mb-4 w-full"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -60,14 +61,14 @@ const About = () => {
       </div>
 
       {/* Section Vision & Mission */}
-      <div className="flex flex-col md:flex-row items-center md:items-center justify-between w-full px-4 md:px-0 pt-4 md:pt-0 max-w-7xl mx-auto gap-8 -mt-40 md:-mt-52 lg:-mt-72 xl:-mt-[500px]">
+      <div className="flex flex-col md:flex-row items-center md:items-center justify-between w-full px-4 md:px-0 pt-4 md:pt-0 max-w-7xl mx-auto gap-10 lg:gap-8 -mt-52 md:-mt-52 lg:-mt-72 xl:-mt-[500px]">
         {/* Text kiri */}
         <div className="text-white text-justify max-w-xl self-center md:self-center md:pl-8 lg:ml-7">
-          <h3 className="text-2xl font-semibold mb-4"
+          <h3 className="text-lg lg:text-2xl font-semibold mb-4"
             style={{ 
               textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
             }}>Our Vision</h3>
-          <p className="text-base md:text-lg leading-relaxed mb-6 font-light"
+          <p className="text-sm lg:text-base md:text-lg leading-relaxed mb-6 font-light"
             style={{ 
               textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
             }}>
@@ -75,11 +76,11 @@ const About = () => {
               reviews and comparisons, empowering users to make informed,
               confident, and smarter purchasing decisions.
           </p>
-          <h3 className="text-2xl font-semibold mb-4"
+          <h3 className="text-lg lg:text-2xl font-semibold mb-4"
             style={{ 
               textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
             }}>Our Mission</h3>
-          <p className="text-base md:text-lg leading-relaxed font-light"
+          <p className="text-sm lg:text-base md:text-lg leading-relaxed font-light"
             style={{ 
               textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
             }}>
@@ -107,14 +108,14 @@ const About = () => {
         <img
           src="/gradient-4.png"
           alt="Gradient"
-          className="w-full mt-52 h-[50vh] lg:h-[100vh] sm:h-[10vh] md:h-[10vh]  block"
+          className="w-full mt-52 h-[35vh] lg:h-[100vh] sm:h-[10vh] md:h-[10vh]  block"
         />
 
         {/* Gambar makna-logo di atas gradien */}
         <img
           src="/makna-logo2.png"
           alt="Makna Logo"
-          className="absolute top-96 lg:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-5xl "
+          className="absolute top-96 lg:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-5xl -mt-20 lg:mt-0"
         />
       </div>
 
