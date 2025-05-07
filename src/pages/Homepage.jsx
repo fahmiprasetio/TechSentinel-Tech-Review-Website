@@ -30,7 +30,10 @@ const Homepage = () => {
         animate={{ opacity: 1, y: 0 }}   
         transition={{ duration: 0.5, ease: 'easeOut' }} 
         className="font-poppins text-white text-2xl mt-32 sm:text-4xl md:text-5xl font-semibold mb-4"
-        style={{ lineHeight: '1.1' }}
+        style={{ 
+          lineHeight: '1.1',
+          textShadow: '2px 2px 6px rgba(0, 0, 0, 0.3)'
+         }}
       >
         Commitment to Objectivity
         and <br />Technology Accuracy
@@ -42,6 +45,9 @@ const Homepage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
         className="text-white text-sm sm:text-lg md:text-lg mb-8 max-w-5xl font-light"
+        style={{ 
+          textShadow: '2px 2px 6px rgba(0, 0, 0, 0.3)'
+         }}
       >
         Providing data-driven technology analysis to help facilitate the best choices for you
       </motion.p>
@@ -90,16 +96,22 @@ const Homepage = () => {
               boxShadow: '0px 8px 24px rgba(5, 5, 10, 0.4)'
             }}>
             <img src="/headphone-noBg3.png" alt="Headphone" className="w-50 h-50 mb-1 drop-shadow-2xl" />
-            <h3 className="text-white text-lg font-semibold mb-5">Headphone</h3>
+            <h3 className="text-white text-lg font-semibold mb-5"
+              style={{ 
+                      textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)'
+              }}>Headphone</h3>
           </div>
 
           {/* Laptop */}
           <div className="flex flex-col items-center bg-white bg-opacity-10 border border-white border-opacity-80 backdrop-blur-md rounded-2xl sm:p-4 p-0 flex-1 sm:mx-4 mx-3 hover:scale-105 transition-transform"
-            style={{
-              boxShadow: '0px 8px 24px rgba(5, 5, 10, 0.4)'
-            }}>
+              style={{
+                boxShadow: '0px 8px 24px rgba(5, 5, 10, 0.4)'
+              }}>
             <img src="/laptop-noBg3.png" alt="Laptop" className="w-50 h-50 mb-1 drop-shadow-2xl" />
-            <h3 className="text-white text-lg font-semibold mb-5">Laptop</h3>
+            <h3 className="text-white text-lg font-semibold mb-5"
+              style={{ 
+                textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)'
+              }}>Laptop</h3>
           </div>
 
           {/* Phone */}
@@ -108,7 +120,10 @@ const Homepage = () => {
               boxShadow: '0px 8px 24px rgba(5, 5, 10, 0.4)'
             }}>
             <img src="/phone-noBg3.png" alt="Phone" className="w-50 h-50 mb-1 drop-shadow-2xl" />
-            <h3 className="text-white text-lg font-semibold mb-5">Phone</h3>
+            <h3 className="text-white text-lg font-semibold mb-5"
+            style={{ 
+              textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)'
+            }}>Phone</h3>
           </div>
 
         </div>
@@ -121,6 +136,9 @@ const Homepage = () => {
           animate={{ opacity: chooseUsInView ? 1 : 0, y: chooseUsInView ? 0 : 50 }}   // Animasi ke: muncul dan posisi normal
           transition={{ duration: 0.5, ease: 'easeOut' }} // Durasi dan jenis easing
           className="font-poppins text-white text-2xl sm:text-4xl md:text-5xl mt-8 font-semibold mb-4"
+          style={{ 
+            textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
+          }}
         >
           Why Choose Us?
         </motion.h2>
@@ -129,11 +147,25 @@ const Homepage = () => {
           animate={{ opacity: chooseUsInView ? 1 : 0, y: chooseUsInView ? 0 : 50 }}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
           className="text-white text-sm sm:text-lg md:text-lg mb-8 max-w-5xl font-light"
+          style={{ 
+            textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)'
+          }}
         >
           We provide expert, data-driven reviews to help you make the best technology choices.
           Our comprehensive analysis ensures you get the most accurate, up-to-date information on products to help you decide with confidence.
         </motion.p>
       </div>
+
+      {/* Judul Popular Laptop in 2025 */}
+      <div className="w-full max-w-5xl mt-10 text-center sm:px-4 px-6">
+        <h2 className="font-poppins text-white text-xl sm:text-4xl md:text-5xl lg:text-4xl mt-8 font-semibold mb-2 lg:-mb-3"
+        style={{ 
+          textShadow: '2px 2px 6px rgba(0, 0, 0, 0.4)'
+        }}>
+          Popular Laptop in 2025
+        </h2>
+      </div>
+
 
       {/* Card Section */}
       <div className="w-full max-w-5xl mt-10 bg-white bg-opacity-5 border border-white border-opacity-30 rounded-2xl overflow-x-auto">

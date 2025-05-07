@@ -26,7 +26,7 @@ const LoginPage = () => {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("user", JSON.stringify(response.data[0])); // Simpan data user (misalnya, email)
 
-        navigate("/"); // Arahkan ke Homepage setelah login berhasil
+        navigate("/"); 
       } else {
         alert("Email atau password salah!");
       }
