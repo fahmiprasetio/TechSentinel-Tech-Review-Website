@@ -34,7 +34,7 @@ const Riview = () => {
   const categories = [...new Set(data.map((item) => item.category))];
 
   return (
-    <div className="px-4 ">
+    <div className="px-4 min-h-screen bg-scroll bg-center" style={{ backgroundImage: "url('/bg-riviw.svg')" }}>
       <CategoryFilterButton
         categories={categories}
         activeCategory={activeCategory}
