@@ -64,6 +64,11 @@ function RootLayout() {
                 </NavLink>
               </li>
               <li>
+    <NavLink to="/technology" className={({ isActive }) => `${isActive ? "btn-active" : ""}`}>
+      Technology
+    </NavLink>
+  </li> 
+              <li>
                 <NavLink
                   to="/about"
                   className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
@@ -94,9 +99,10 @@ function RootLayout() {
         </div>
       </div>
 
-      <div className="pt-20 px-6">
+      <div className="pt-[3rem]">
         <Outlet />
       </div>
+
     </>
   );
 }

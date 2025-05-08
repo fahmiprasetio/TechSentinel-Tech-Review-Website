@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
 
       {/* Content */}
       <LayoutNavbar />
-      <main className="mt-16 flex-grow">
+      <main className="mt-0 flex-grow">
         {children}
       </main>
 

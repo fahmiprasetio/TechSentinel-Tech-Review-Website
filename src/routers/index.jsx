@@ -9,6 +9,8 @@ import Loginpage from "../pages/Loginpage";
 import ProfilePage from "../pages/ProfilePage";
 import ErrorPage from "../pages/ErrorPage";
 import RegisterPage from "../pages/RegisterPage";
+import TechPage from "../pages/tech"; 
+
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,10 @@ export const router = createBrowserRouter([
         path: "/ProfilePage",
         element: <ProfilePage />,
       },
+      {
+        path: "/technology",
+        element: <TechPage />,
+      },      
     ],
   },
 ]);
