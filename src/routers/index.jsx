@@ -9,14 +9,12 @@ import Loginpage from "../pages/Loginpage";
 import ProfilePage from "../pages/ProfilePage";
 import ErrorPage from "../pages/ErrorPage";
 import RegisterPage from "../pages/RegisterPage";
-import TechPage from "../pages/tech"; 
-
+import TechPage from "../pages/tech";
 
 export const router = createBrowserRouter([
   {
-    path: "/",  // root path hanya ada sekali
+    path: "/", // root path hanya ada sekali
     element: <RootLayout />,
-    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -49,7 +47,12 @@ export const router = createBrowserRouter([
       {
         path: "/technology",
         element: <TechPage />,
-      },      
+      },
     ],
   },
+  {
+    path: "*",
+    element: <ErrorPage />, // berada di luar RootLayout
+  },
 ]);
+
