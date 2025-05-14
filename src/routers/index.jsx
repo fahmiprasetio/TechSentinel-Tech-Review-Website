@@ -9,11 +9,13 @@ import Loginpage from "../pages/Loginpage";
 import ProfilePage from "../pages/ProfilePage";
 import ErrorPage from "../pages/ErrorPage";
 import RegisterPage from "../pages/RegisterPage";
-import TechPage from "../pages/tech";
+import TechPage from "../pages/Tech";
+import ProductDetail from "../pages/ProductDetail";
+
 
 export const router = createBrowserRouter([
   {
-    path: "/", // root path hanya ada sekali
+    path: "/", 
     element: <RootLayout />,
     children: [
       {
@@ -48,11 +50,15 @@ export const router = createBrowserRouter([
         path: "/technology",
         element: <TechPage />,
       },
+      {
+        path: "/technology/detail/:id", 
+        element: <ProductDetail />,
+      },
     ],
   },
   {
     path: "*",
-    element: <ErrorPage />, // berada di luar RootLayout
+    element: <ErrorPage />, 
   },
 ]);
 

@@ -1,118 +1,7 @@
 import { useState } from 'react';
-import { FunnelPlus, FunnelX } from 'lucide-react';
-
-// Data statis disimpan sebagai referensi
-const allTechnologies = [
-  // Handphones
-  {
-    id_tech: '1',
-    tech_name: 'Samsung Galaxy S23',
-    category: 'handphone',
-    brand: 'Samsung',
-    specs: { ram: '8 GB', storage: '128 GB', price: 12000000 },
-    rating: 4.5,
-  },
-  {
-    id_tech: '2',
-    tech_name: 'Xiaomi Redmi Note 12',
-    category: 'handphone',
-    brand: 'Xiaomi',
-    specs: { ram: '6 GB', storage: '128 GB', price: 3500000 },
-    rating: 4.1,
-  },
-  {
-    id_tech: '3',
-    tech_name: 'iPhone 14 Pro',
-    category: 'handphone',
-    brand: 'Apple',
-    specs: { ram: '6 GB', storage: '256 GB', price: 18000000 },
-    rating: 4.8,
-  },
-  {
-    id_tech: '4',
-    tech_name: 'Infinix Zero 5G',
-    category: 'handphone',
-    brand: 'Infinix',
-    specs: { ram: '8 GB', storage: '128 GB', price: 2900000 },
-    rating: 4.0,
-  },
-  {
-    id_tech: '5',
-    tech_name: 'Vivo V25',
-    category: 'handphone',
-    brand: 'Vivo',
-    specs: { ram: '12 GB', storage: '256 GB', price: 5100000 },
-    rating: 4.3,
-  },
-
-  // Laptops
-  {
-    id_tech: '6',
-    tech_name: 'MacBook Air M2',
-    category: 'laptop',
-    brand: 'Apple',
-    specs: { ram: '8 GB', storage: '256 GB', price: 16999000 },
-    rating: 4.7,
-  },
-  {
-    id_tech: '7',
-    tech_name: 'ASUS ROG Zephyrus G14',
-    category: 'laptop',
-    brand: 'ASUS',
-    specs: { ram: '16 GB', storage: '512 GB', price: 19999000 },
-    rating: 4.6,
-  },
-  {
-    id_tech: '8',
-    tech_name: 'Dell XPS 13',
-    category: 'laptop',
-    brand: 'Dell',
-    specs: { ram: '16 GB', storage: '512 GB', price: 21000000 },
-    rating: 4.5,
-  },
-  {
-    id_tech: '9',
-    tech_name: 'HP Pavilion 14',
-    category: 'laptop',
-    brand: 'HP',
-    specs: { ram: '8 GB', storage: '256 GB', price: 8500000 },
-    rating: 4.2,
-  },
-  {
-    id_tech: '10',
-    tech_name: 'Lenovo IdeaPad 3',
-    category: 'laptop',
-    brand: 'Lenovo',
-    specs: { ram: '8 GB', storage: '512 GB', price: 7900000 },
-    rating: 4.1,
-  },
-
-  // Tablets
-  {
-    id_tech: '11',
-    tech_name: 'iPad Air 5',
-    category: 'tablet',
-    brand: 'Apple',
-    specs: { ram: '8 GB', storage: '256 GB', price: 10000000 },
-    rating: 4.6,
-  },
-  {
-    id_tech: '12',
-    tech_name: 'Samsung Galaxy Tab S8',
-    category: 'tablet',
-    brand: 'Samsung',
-    specs: { ram: '8 GB', storage: '128 GB', price: 9500000 },
-    rating: 4.5,
-  },
-  {
-    id_tech: '13',
-    tech_name: 'Xiaomi Pad 5',
-    category: 'tablet',
-    brand: 'Xiaomi',
-    specs: { ram: '6 GB', storage: '128 GB', price: 5200000 },
-    rating: 4.3,
-  }
-];
+import { FunnelPlus, FunnelX, Star } from 'lucide-react';
+import allTechnologies from '../data/technologies';
+import { Link } from 'react-router-dom';
 
 
 export default function TechPage() {
@@ -311,6 +200,7 @@ export default function TechPage() {
         </div>
       )}
 
+
       {/* Konten utama */}
       <div className="flex-1 p-6">
         {/* Tombol Filter dan Search */}
@@ -353,17 +243,43 @@ export default function TechPage() {
         </div>
 
         {/* Grid Teknologi */}
-        <div className={`grid grid-cols-1 sm:grid-cols-2 ${showFilter ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-6`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 ${showFilter ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-6`}>
           {filteredTechs.map((tech) => (
             <div
               key={tech.id_tech}
-              className="border border-white rounded-lg p-4 bg-white/10 text-white shadow-md transition duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl"
+              className="border border-white rounded-lg p-4 text-white shadow-md transition duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('Background-4.2.png')`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
             >
-              <h2 className="text-lg font-bold mb-2">{tech.tech_name}</h2>
-              <p>{tech.brand}</p>
-              <p>IDR {tech.specs.price.toLocaleString()}</p>
-              <p>⭐ {tech.rating}</p>
+              <img
+                src={tech.image}
+                alt={tech.tech_name}
+                className="w-72 h-auto object-contain mx-auto -mb-2 -mt-3 rounded"
+                style={{
+                  filter: 'drop-shadow(10px 10px 10px rgba(0,0,0,0.5))',
+                }}
+              />
+              <h2 className="text-lg ml-3 font-bold font-poppins mx-auto">{tech.tech_name}</h2>
+              <p className="ml-3">Brand : {tech.brand}</p>
+              <p className="ml-3">IDR {tech.specs.price.toLocaleString()}</p>
+              <div className="flex items-center ml-3">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
+                <span>{tech.rating}</span>
+              </div>
+
+
+              <Link
+                to={`/technology/detail/${tech.id_tech}`}
+                className="mt-4 mb-3 ml-3 inline-block bg-transparent border border-white text-white px-4 py-2 rounded-xl hover:bg-white hover:text-black transition"
+              >
+                Lihat Detail
+              </Link>
             </div>
+
           ))}
 
           {filteredTechs.length === 0 && (
