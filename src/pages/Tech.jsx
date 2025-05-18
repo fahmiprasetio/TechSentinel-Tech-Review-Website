@@ -132,6 +132,7 @@ export default function TechPage() {
   return (
     <div className="flex w-full min-h-screen text-white m-0 p-0">
       {showFilter && (
+        // Sidebar
         <div className="w-72 bg-[#1f2937] text-white shadow-lg p-4 border-r-2 border-r-gray-200">
           {/* Kategori */}
           <div className="mb-4 mt-5">
@@ -385,7 +386,7 @@ export default function TechPage() {
       {/* Konten utama */}
       <div className="flex-1 p-6">
         {/* Tombol Filter dan Search */}
-        <div className="flex flex-wrap items-center gap-2 mt-5 mb-8">
+        <div className="flex flex-wrap items-center gap-2 mt-5 mb-7">
           <div className="flex gap-2">
             <button
               onClick={() => setShowFilter(!showFilter)}
@@ -418,10 +419,13 @@ export default function TechPage() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Cari berdasarkan nama..."
-            className="px-4 py-2 w-full rounded-xl md:w-72 text-black"
+            placeholder="Cari berdasarkan nama . . . "
+            className="bg-white/0 w-1/3 text-white border border-white rounded-lg py-2 px-3 focus:ring-2 focus:ring-white placeholder-white placeholder-opacity-80"
           />
         </div>
+
+        {/* Garis horizontal */}
+        <div className="border-b-2 border-white w-full mb-10"></div>
 
         {/* Grid Teknologi */}
         <div className={`grid grid-cols-1 sm:grid-cols-2 ${showFilter ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-6`}>
@@ -456,7 +460,6 @@ export default function TechPage() {
                 <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
                 <span>{tech.rating}</span>
               </div>
-
 
               <Link
                 to={`/technology/detail/${tech.id_tech}`}

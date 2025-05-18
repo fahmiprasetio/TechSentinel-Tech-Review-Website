@@ -48,6 +48,11 @@ function RootLayout() {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/technology" className={({ isActive }) => `${isActive ? "btn-active" : ""}`}>
+                  Technology
+                </NavLink>
+              </li> 
+              <li>
                 <NavLink
                   to="/Riview"
                   className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
@@ -63,11 +68,6 @@ function RootLayout() {
                   Comparison
                 </NavLink>
               </li>
-              <li>
-    <NavLink to="/technology" className={({ isActive }) => `${isActive ? "btn-active" : ""}`}>
-      Technology
-    </NavLink>
-  </li> 
               <li>
                 <NavLink
                   to="/about"
