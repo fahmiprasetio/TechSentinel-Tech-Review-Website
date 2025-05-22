@@ -54,10 +54,10 @@ function RootLayout() {
               </li> 
               <li>
                 <NavLink
-                  to="/Riview"
+                  to="/Article"
                   className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
                 >
-                  Review
+                  Article
                 </NavLink>
               </li>
               <li>
@@ -99,7 +99,7 @@ function RootLayout() {
         </div>
       </div>
 
-      <div className="pt-[3rem]">
+      <div className="pt-16">
         <Outlet />
       </div>
 
