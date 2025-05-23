@@ -3,15 +3,13 @@ import React from 'react';
 import { Listbox } from '@headlessui/react';
 import { ChevronDown, Check } from 'lucide-react';
 
-// Opsi kategori bisa dipindahkan ke sini atau di-props dari Article.jsx
-// Untuk contoh ini, kita akan asumsikan di-props.
+
 
 const FilterSidebar = ({
   kategoriOptions,
   selectedKategori,
   onKategoriChange,
-  // Anda bisa menambahkan props lain untuk filter tambahan di sini
-  // Misalnya: brandOptions, selectedBrand, onBrandChange, dll.
+  
 }) => {
   return (
     <div className="w-72 bg-[#1f2937] text-white shadow-lg p-4 border-r-2 border-r-gray-200">
@@ -60,13 +58,7 @@ const FilterSidebar = ({
         </Listbox>
       </div>
 
-      {/* Tambahkan filter lain di sini jika diperlukan (misal, Author, Tanggal) */}
-      {/* Contoh:
-      <div className="mb-4">
-        <label className="block font-medium mb-1">Penulis:</label>
-        {/* Implementasi Listbox untuk Penulis *}
-      </div>
-      */}
+      
     </div>
   );
 };

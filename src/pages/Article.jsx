@@ -4,14 +4,14 @@ import ListArticle from "../components/ListArticle";
 import FilterSidebar from "../components/FilterSidebar"; // Impor komponen baru
 import { FunnelPlus, FunnelX } from 'lucide-react'; // Impor ikon
 
-// Opsi kategori untuk artikel (sesuaikan jika perlu)
-// Anda bisa mendapatkan ini secara dinamis dari data artikel jika mau
+// Opsi kategori untuk artikel 
+
 const kategoriArticleOptions = [
   { name: 'Tampilkan Semua', value: '' },
-  { name: 'Handphone', value: 'Handphone' }, // Pastikan valuenya cocok dengan data article.category
+  { name: 'Handphone', value: 'Handphone' }, // Pastikan valuenya harus cocok dengan data article.category
   { name: 'Laptop', value: 'Laptop' },
   { name: 'Tablet', value: 'Tablet' },
-  // Tambahkan kategori lain yang relevan dengan artikel Anda
+  // Tambahkan kategori lain 
 ];
 
 const Article = () => {
