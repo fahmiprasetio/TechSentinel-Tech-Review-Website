@@ -54,7 +54,7 @@ function RootLayout() {
               </li> 
               <li>
                 <NavLink
-                  to="/Article"
+                  to="/article"
                   className={({ isActive }) => `${isActive ? "btn-active" : ""}`}
                 >
                   Article
