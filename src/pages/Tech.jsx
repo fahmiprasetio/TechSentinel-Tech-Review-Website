@@ -37,7 +37,8 @@ const ramOptions = [
   { name: '8 GB', value: '8 GB' },
   { name: '12 GB', value: '12 GB' },
   { name: '16 GB', value: '16 GB' },
-  { name: '24 GB', value: '24 GB' }
+  { name: '24 GB', value: '24 GB' },
+  { name: '>24 GB', value: '>24 GB' }
 ];
 
 // untuk keperluan filter custom side bar : Memori Internal
@@ -94,7 +95,15 @@ export default function TechPage() {
   const filteredTechs = allTechnologies.filter((tech) => {
     if (category && tech.category !== category) return false;
     if (filters.brand && tech.brand !== filters.brand) return false;
-    if (filters.ram && tech.specs.ram !== filters.ram) return false;
+    if (filters.ram) {
+      const ramValue = parseInt(tech.specs.ram); // Ambil angka dari '6 GB', dsb.
+      if (filters.ram === '>24 GB') {
+        if (isNaN(ramValue) || ramValue <= 24) return false;
+      } else {
+        if (tech.specs.ram !== filters.ram) return false;
+      }
+    }
+
 
     const storageGB = parseInt(tech.specs.storage);
     if (filters.storage && !isNaN(storageGB)) {

@@ -11,6 +11,9 @@ import ErrorPage from "../pages/ErrorPage";
 import RegisterPage from "../pages/RegisterPage";
 import TechPage from "../pages/Tech";
 import ProductDetail from "../pages/ProductDetail";
+import ProductComments from "../pages/ProductComments";
+
+
 
 
 export const router = createBrowserRouter([
@@ -54,6 +57,11 @@ export const router = createBrowserRouter([
         path: "/technology/detail/:id", 
         element: <ProductDetail />,
       },
+      {
+        path: "/technology/comments/:id",
+        element: <ProductComments />, 
+      },
+
     ],
   },
   {

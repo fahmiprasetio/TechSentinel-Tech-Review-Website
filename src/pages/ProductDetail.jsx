@@ -1,13 +1,32 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import allTechnologies from '../data/technologies';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Bookmark, ChevronsRight  } from 'lucide-react';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = allTechnologies.find(item => item.id_tech === id);
+  const [activeTab, setActiveTab] = useState('description');
 
-  const [activeTab, setActiveTab] = useState('productDetails');
+  const tabRefs = {
+    description: useRef(null),
+    specifications: useRef(null),
+    ratingReviews: useRef(null),
+  };
+
+  const [indicatorProps, setIndicatorProps] = useState({ left: 0, width: 0 });
+
+  useLayoutEffect(() => {
+    const currentRef = tabRefs[activeTab]?.current;
+    if (currentRef) {
+      setIndicatorProps({
+        left: currentRef.offsetLeft,
+        width: currentRef.offsetWidth,
+      });
+    }
+  }, [activeTab]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,12 +36,35 @@ export default function ProductDetail() {
     return <div className="text-white p-6">Produk tidak ditemukan.</div>;
   }
 
-  return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-black/70 via-black/30 to-black/70 text-white px-6">
+  // Favorit
+  const [isFavorited, setIsFavorited] = useState(false);
+  const userId = '123'; // Ubah ini sesuai autentikasi user 
 
-      <div className="flex flex-col md:flex-row items-start justify-center gap-12 max-w-6xl mx-auto ">
+  const handleToggleFavorite = async () => {
+    setIsFavorited(prev => !prev);
+    const url = isFavorited
+      ? 'https://your-api-domain.com/api/favorite/delete'
+      : 'https://your-api-domain.com/api/favorite/add';
+
+    try {
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id_user: userId,
+          id_tech: product.id_tech,
+        }),
+      });
+    } catch (err) {
+      console.error('Gagal menyimpan ke favorit:', err);
+    }
+  };
+
+  return (
+    <div className="min-h-full w-full bg-gradient-to-b from-black/70 via-black/30 to-black/50 text-white pb-20">
+      <div className="flex flex-col md:flex-row items-start justify-center gap-12 max-w-6xl mx-auto relative">
         {/* Gambar Produk */}
-        <div className="w-full md:w-1/2 flex justify-center  mt-10">
+        <div className="w-full md:w-1/2 flex justify-center mt-16">
           <img
             src={`/${product.image}`}
             alt={product.tech_name}
@@ -32,116 +74,202 @@ export default function ProductDetail() {
         </div>
 
         {/* Informasi Produk */}
-        <div className="w-full md:w-2/3 text-left text-lg mt-16 ">
-          {/* nama produk */}
-          <h1 className="text-4xl mb-2 font-bold">{product.tech_name}</h1>
+        <div className="w-full md:w-2/3 text-left text-lg mt-16">
+          <h1 className="text-4xl mb-2 font-bold flex items-center gap-3">
+            {product.tech_name}
+            <button
+              onClick={handleToggleFavorite}
+              aria-label="Simpan ke Favorit"
+              className="transition mt-1"
+            >
+              <Bookmark 
+                size={48} 
+                strokeWidth={2}
+                className={`w-6 h-6 ${
+                  isFavorited ? 'text-yellow-400 fill-yellow-400' : 'text-white/80 hover:text-yellow-300'
+                }`}
+                fill={isFavorited ? 'currentColor' : 'none'}
+              />
+            </button>
+          </h1>
 
-          {/* Rating */}
-          <div className="flex items-center space-x-2 text-yellow-400 text-lg font-semibold">
-            <span>★ {product.rating.toFixed(1)}</span>
+          <div className="flex items-center space-x-2 text-yellow-400 text-xl font-semibold">
+            <span>
+              ★ {product.rating.toFixed(1)} <span className="text-white/50 text-sm">/ 5.0</span>
+            </span>
           </div>
 
-          {/* Review */}
           <p className="text-gray-300 mb-2 text-base">{product.review}</p>
 
-          {/* Harga */}
           <p className="text-3xl font-bold text-white">
             IDR {product.specs.price.toLocaleString('id-ID')}
           </p>
 
+          {/* Tabs */}
+          <div className="mt-5 relative w-fit">
+            <div className="relative bg-gray-600 rounded-full inline-flex p-1 text-sm">
+              <motion.div
+                layout
+                transition={{ type: 'spring', stiffness: 500, damping: 70 }}
+                className="absolute top-1 bottom-1 rounded-full bg-white"
+                style={{
+                  width: indicatorProps.width,
+                  left: indicatorProps.left,
+                  zIndex: 0,
+                }}
+              />
 
-          {/* Tab pilihan */}
-          <div className="mt-10">
-            <div className="bg-gray-200 rounded-full inline-flex p-1 text-sm">
-              <button
-                className={`px-6 py-2 rounded-full font-medium transition ${
-                  activeTab === 'description'
-                    ? 'bg-white text-black'
-                    : 'text-gray-600 hover:text-black'
-                }`}
-                onClick={() => setActiveTab('description')}
-              >
-                Deskripsi
-              </button>
-              <button
-                className={`px-6 py-2 rounded-full font-medium transition ${
-                  activeTab === 'specifications'
-                    ? 'bg-white text-black'
-                    : 'text-gray-600 hover:text-black'
-                }`}
-                onClick={() => setActiveTab('specifications')}
-              >
-                Spesifikasi
-              </button>
-              <button
-                className={`px-6 py-2 rounded-full font-medium transition ${
-                  activeTab === 'ratingReviews'
-                    ? 'bg-white text-black'
-                    : 'text-gray-600 hover:text-black'
-                }`}
-                onClick={() => setActiveTab('ratingReviews')}
-              >
-                Rating & Reviews
-              </button>
+              {['description', 'specifications', 'ratingReviews'].map(tab => (
+                <button
+                  key={tab}
+                  ref={tabRefs[tab]}
+                  className={`relative px-6 py-2 rounded-full font-medium transition z-10 ${
+                    activeTab === tab ? 'text-black' : 'text-white hover:bg-white/20'
+                  }`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab === 'description' && 'Deskripsi'}
+                  {tab === 'specifications' && 'Spesifikasi'}
+                  {tab === 'ratingReviews' && 'Rating & Reviews'}
+                </button>
+              ))}
             </div>
 
-            {/* Konten tab */}
-            <div className="mt-6 text-gray-300">
-              {activeTab === 'description' && (
-                <div>
-                  <p>{product.description || 'Deskripsi produk belum tersedia.'}</p>
-                </div>
-              )}
+            {/* Isi Tab */}
+            <div className="mt-6 text-gray-300 min-h-[150px]">
+              <AnimatePresence mode="wait">
+                {activeTab === 'description' && (
+                  <motion.div
+                    key="description"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 30 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4 text-white text-justify text-lg"
+                  >
+                    {(product.description || 'Deskripsi produk belum tersedia.').split('\n\n').map((para, idx) => (
+                      <p key={idx}>{para}</p>
+                    ))}
+                  </motion.div>
+                )}
 
-              {activeTab === 'specifications' && (
-                <div className="grid grid-cols-1 text-white text-md md:grid-cols-2 gap-2">
-                  {product.specs.ram && (
-                    <p><strong>RAM:</strong> {product.specs.ram}</p>
-                  )}
-                  {product.specs.storage && (
-                    <p><strong>Storage:</strong> {product.specs.storage}</p>
-                  )}
-                  {product.specs.baterai && (
-                    <p><strong>Baterai:</strong> {product.specs.baterai}</p>
-                  )}
-                  {product.specs.kamera_depan && (
-                    <p><strong>Kamera Depan:</strong> {product.specs.kamera_depan}</p>
-                  )}
-                  {product.specs.kamera_belakang && (
-                    <p>
-                      <strong>Kamera Belakang:</strong>{' '}
-                      <span className="text-white text-sm">{product.specs.kamera_belakang}</span>
-                    </p>
-                  )}
-                  {product.specs.ukuran_layar && (
-                    <p><strong>Ukuran Layar:</strong> {product.specs.ukuran_layar}</p>
-                  )}
-                  {product.specs.price && (
+                {activeTab === 'specifications' && (
+                  <motion.div
+                    key="specifications"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 30 }}
+                    transition={{ duration: 0.3 }}
+                    className="grid grid-cols-1 text-white text-base md:grid-cols-2 gap-2"
+                  >
+                    {Object.entries(product.specs).map(([key, value]) =>
+                      key !== 'price' ? (
+                        <p key={key}><strong>{key.replace('_', ' ')}:</strong> {value}</p>
+                      ) : null
+                    )}
                     <p><strong>Harga:</strong> IDR {product.specs.price.toLocaleString('id-ID')}</p>
-                  )}
-                </div>
-              )}
+                  </motion.div>
+                )}
 
-              {activeTab === 'ratingReviews' && (
-                <div>
-                  <p><strong>Rating:</strong> ★ {product.rating.toFixed(1)}</p>
-                  <p className="mt-2">{product.review}</p>
-                </div>
-              )}
+                {activeTab === 'ratingReviews' && (
+                  <motion.div
+                    key="ratingReviews"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 30 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="mt-4 space-y-4">
+                      {(product.reviews || []).length > 0 ? (
+                        product.reviews.map((review, idx) => (
+                          <div key={idx} className="border-b border-gray-600 pb-4 last:border-b-0">
+                            <div className="flex items-center space-x-4">
+                              <img
+                                src={review.userPhoto}
+                                alt={review.userName}
+                                className="w-10 h-10 rounded-full object-cover"
+                              />
+                              <div>
+                                <p className="font-semibold text-white">{review.userName}</p>
+                                <p className="text-yellow-400 font-semibold">
+                                  ★ {review.rating.toFixed(1)}{' '}
+                                  <span className="text-white/50 text-sm">/ 5.0</span>
+                                </p>
+                              </div>
+                            </div>
+                            <p className="mt-2 text-white text-base">{review.comment}</p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-400 italic">Belum ada ulasan dari pengguna lain.</p>
+                      )}
+                    </div>
+
+                    {/* Tombol di dalam konten & animasi */}
+                    <div className="mt-6">
+                      <button
+                        onClick={() => navigate(`/technology/comments/${product.id_tech}`)}
+                        className="inline-flex items-center gap-2 text-white border-2 border-white pl-4 pr-3 py-2 rounded-lg hover:bg-white hover:text-black transition font-medium text-base"
+                      >
+                        Lihat komentar lainnya <ChevronsRight size={18} />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+
+              </AnimatePresence>
             </div>
-          </div>
-
-
-          {/* Tombol Kembali */}
-          <div className="mt-10">
-            <button
-              onClick={() => navigate('/technology')}
-              className="inline-block bg-white text-black px-6 py-2 rounded-lg hover:bg-gray-200 transition font-medium"
-            >
-              ← Kembali ke daftar produk
-            </button>
           </div>
         </div>
+      </div>
+
+      {/* Produk Serupa */}
+      <div className="mt-12 -mb-10 max-w-7xl mx-auto">
+        <hr className="border-t border-1 border-white mb-8" />
+        <h2 className="text-2xl font-semibold mb-6 mx-auto">Teknologi Serupa</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {allTechnologies
+            .filter(item => item.id_tech !== product.id_tech && item.category.toLowerCase() === product.category.toLowerCase())
+            .slice(0, 4)
+            .map(tech => (
+              <div
+                key={tech.id_tech}
+                className="border rounded-lg p-4 text-white shadow-md transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-2xl"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('Background-4.2.png')`,
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <img src={`/${tech.image}`} alt={tech.tech_name} className="w-72 h-auto object-contain mx-auto -mt-3 rounded" />
+                <h2 className="text-lg ml-3 font-bold font-poppins mx-auto">{tech.tech_name}</h2>
+                <p className="ml-3">Brand : {tech.brand}</p>
+                <p className="ml-3">IDR {tech.specs.price.toLocaleString('id-ID')}</p>
+                <div className="flex items-center ml-3">
+                  <span className="text-yellow-400">★</span>
+                  <span className="ml-1">{tech.rating}</span>
+                </div>
+                <button
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    navigate(`/technology/detail/${tech.id_tech}`);
+                  }}
+                  className="mt-4 mb-3 ml-3 inline-block bg-transparent border border-white text-white px-4 py-2 rounded-xl hover:bg-white hover:text-black transition"
+                >
+                  Lihat Detail
+                </button>
+              </div>
+            ))}
+        </div>
+
+        {allTechnologies.filter(
+          item => item.id_tech !== product.id_tech && item.category.toLowerCase() === product.category.toLowerCase()
+        ).length === 0 && (
+          <p className="text-center text-gray-400 mt-8 italic">
+            Tidak ada produk serupa dalam kategori ini.
+          </p>
+        )}
       </div>
     </div>
   );
