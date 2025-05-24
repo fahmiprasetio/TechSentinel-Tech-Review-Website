@@ -2,7 +2,6 @@ import RootLayout from "../layouts/layout";
 import { createBrowserRouter } from "react-router-dom";
 
 import Homepage from "../pages/Homepage";
-import Riview from "../pages/Review";
 import About from "../pages/About";
 import Comparison from "../pages/Comparison";
 import Loginpage from "../pages/Loginpage";
@@ -12,8 +11,8 @@ import RegisterPage from "../pages/RegisterPage";
 import TechPage from "../pages/Tech";
 import ProductDetail from "../pages/ProductDetail";
 import ProductComments from "../pages/ProductComments";
-
-
+import Article from "../pages/Article";
+import DetailArticle from "../pages/DetailArticle";
 
 
 export const router = createBrowserRouter([
@@ -26,8 +25,12 @@ export const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/Riview",
-        element: <Riview />,
+        path: "/article",
+        element: <Article/>,
+      },
+      {
+        path: "/article/:slug",
+        element: <DetailArticle/>,
       },
       {
         path: "/About",

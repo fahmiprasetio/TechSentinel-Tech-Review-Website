@@ -6,7 +6,6 @@ export default function ProductComments() {
   const { id } = useParams();
   const product = allTechnologies.find(item => item.id_tech === id);
 
-    // ⬇ Scroll ke atas saat komponen pertama kali dimuat
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
