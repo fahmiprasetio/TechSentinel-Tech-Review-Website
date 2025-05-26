@@ -10,6 +10,7 @@ import ErrorPage from "../pages/ErrorPage";
 import RegisterPage from "../pages/RegisterPage";
 import TechPage from "../pages/Tech";
 import ProductDetail from "../pages/ProductDetail";
+import ProductComments from "../pages/ProductComments";
 import Article from "../pages/Article";
 import DetailArticle from "../pages/DetailArticle";
 
@@ -59,6 +60,11 @@ export const router = createBrowserRouter([
         path: "/technology/detail/:id", 
         element: <ProductDetail />,
       },
+      {
+        path: "/technology/comments/:id",
+        element: <ProductComments />, 
+      },
+
     ],
   },
   {
