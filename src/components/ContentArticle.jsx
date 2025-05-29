@@ -22,15 +22,6 @@ const ContentArticle = ({ slug }) => {
   }
 
   return (
-    // <div
-    //   className="bg-center bg-contain min-h-screen px-4 sm:px-8 py-12   "
-    //   style={{ backgroundImage: "url('/bg-riviw.svg')" }}
-    // >
-    //   <div className="max-w-screen-lg mx-auto border bg-slate-800 p-6 rounded-lg hover:bg-opacity-85">
-    //     <h1 className="text-white font-semibold lg:text-3xl sm:text-xl md:text-2xl text-center mb-8">
-    //       {article.title}
-    //     </h1>
-
     <div
   className="relative bg-center bg-contain min-h-screen px-4 sm:px-8 py-12"
   style={{ backgroundImage: "url('/bg-riviw.svg')" }}
@@ -108,6 +99,7 @@ const ContentArticle = ({ slug }) => {
           </p>
         </div>
       </div>
+      
     </div>
   );
 };

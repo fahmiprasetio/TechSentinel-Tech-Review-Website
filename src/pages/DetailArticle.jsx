@@ -9,6 +9,7 @@ const DetailArticle = () => {
     <div>
       <ContentArticle slug={slug} />
     </div>
+
   );
 };
 
