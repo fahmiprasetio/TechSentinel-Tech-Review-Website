@@ -32,12 +32,12 @@ const ListArticle = ({ articles }) => {
 
               {/* Footer */}
               <div className="absolute bottom-2 left-2 flex items-center gap-2 text-xs text-gray-400">
-                <span className="hidden sm:block">{article.author}</span>
-                <span className="hidden sm:block bg-sky-400 text-slate-900 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
+                <span className="hidden md:block">{article.author}</span>
+                <span className="hidden md:block bg-sky-400 text-slate-900 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
                   {article.category}
                 </span>
               </div>
-              <div className="absolute bottom-2 right-2 text-xs text-gray-400">
+              <div className="hidden sm:block absolute bottom-2 right-2 text-xs text-gray-400">
                 {article.date}
               </div>
             </div>
