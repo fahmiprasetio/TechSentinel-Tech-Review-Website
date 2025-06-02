@@ -1,7 +1,7 @@
 {
   "articles": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Samsung Galaxy S23: Mengukir Standar Baru Smartphone Premium",
       "slug": "samsung-galaxy-s23",
       "thumbnail": "/images/samsung-galaxy-s23.png",
@@ -11,7 +11,7 @@
       "excerpt": "Samsung Galaxy S23 hadir dengan desain kompak, chipset Snapdragon 8 Gen 2, serta kamera 50MP yang powerful. Cocok bagi pengguna yang mencari ponsel flagship ringkas tanpa mengorbankan performa."
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Xiaomi Redmi Note 12: Performa Andal dengan Harga Terjangkau",
       "slug": "xiaomi-redmi-note-12",
       "thumbnail": "https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/04/11/12p-2040911048.png",
@@ -21,7 +21,7 @@
       "excerpt": "Xiaomi Redmi Note 12 menawarkan kombinasi harga terjangkau dan performa mumpuni, ideal untuk pelajar maupun pengguna dengan budget terbatas."
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "ASUS ROG Zephyrus G14: Unggulan Laptop Tahun 2023",
       "slug": "asus-rog-zephyrus-g14",
       "thumbnail": "/images/asus-rog-zephyrus-g14.png",
@@ -31,7 +31,7 @@
       "excerpt": "ASUS ROG Zephyrus G14 hadir dengan AMD Ryzen 9 6900HS dan 14 inci QHD 120Hz, menjadi pilihan menarik di kategori laptop gaming portabel tahun 2023."
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Apple iPad Air 5: Unggulan Tablet Tahun 2022",
       "slug": "apple-ipad-air-5",
       "thumbnail": "/images/apple-ipad-air-5.png",
@@ -41,7 +41,7 @@
       "excerpt": "Apple iPad Air 5 hadir dengan Apple M1 dan 10.9 inci Liquid Retina, menjadi pilihan menarik di kategori tablet serbaguna tahun 2022."
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "iPhone 14 Pro: Gaya dan Performa Sinematik dari Apple",
       "slug": "iphone-14-pro",
       "thumbnail": "/images/iphone-14-pro.png",
@@ -51,7 +51,7 @@
       "excerpt": "iPhone 14 Pro menawarkan pengalaman premium dengan chip A16 Bionic, sistem kamera Pro yang canggih, dan Dynamic Island. Ideal untuk pengguna yang menginginkan performa dan kemampuan videografi terbaik."
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Infinix Zero 5G: Performa Ngebut Harga Hemat",
       "slug": "infinix-zero-5g",
       "thumbnail": "/images/infinix-zero-5g.png",
@@ -61,7 +61,7 @@
       "excerpt": "Infinix Zero 5G hadir sebagai pilihan smartphone 5G terjangkau dengan performa gaming yang baik berkat RAM 8GB dan baterai besar 5000 mAh."
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Vivo V25: Kamera Jernih dan Desain Menawan untuk Konten Kreator",
       "slug": "vivo-v25",
       "thumbnail": "/images/vivo-v25.png",
@@ -71,7 +71,7 @@
       "excerpt": "Vivo V25 menonjol dengan kamera depan 50MP dan kamera belakang 64MP, RAM 12GB, serta desain yang stylish. Ideal untuk penggemar selfie dan pembuatan konten."
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "MacBook Air M2: Tipis, Ringan, dan Kencang untuk Produktivitas",
       "slug": "macbook-air-m2",
       "thumbnail": "/images/macbook-air-m2.png",
@@ -81,7 +81,7 @@
       "excerpt": "MacBook Air M2 menawarkan desain yang diperbarui, chip M2 yang bertenaga, dan daya tahan baterai luar biasa. Pilihan tepat untuk profesional dan mahasiswa yang membutuhkan portabilitas dan performa."
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Dell XPS 13: Desain Premium dan Layar Menakjubkan",
       "slug": "dell-xps-13",
       "thumbnail": "/images/dell-xps-13.png",
@@ -91,7 +91,7 @@
       "excerpt": "Dell XPS 13 dikenal dengan desainnya yang ringkas dan premium, serta layar InfinityEdge yang memukau. Cocok untuk profesional yang mengutamakan tampilan dan portabilitas."
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "MSI Prestige 13 AI Evo: Powerful dan Stylish untuk Kreator",
       "slug": "msi-prestige-13-ai-evo",
       "thumbnail": "/images/msi-prestige-13-ai-evo.png",
@@ -101,7 +101,7 @@
       "excerpt": "MSI Prestige 13 AI Evo menggabungkan performa tinggi dengan prosesor Intel terbaru dan fitur AI, dalam balutan desain yang elegan dan ringan. Ideal untuk content creator."
     },
     {
-      "id": 11,
+      "id": "11",
       "title": "Lenovo LOQ 15i: Laptop Gaming Murah Tapi Mantap",
       "slug": "lenovo-loq-15i",
       "thumbnail": "/images/lenovo-loq-15i.png",
@@ -111,7 +111,7 @@
       "excerpt": "Lenovo LOQ 15i menawarkan spesifikasi gaming yang solid dengan harga terjangkau. Dilengkapi RAM 16GB dan SSD 512GB, siap menemani sesi gaming tanpa hambatan."
     },
     {
-      "id": 12,
+      "id": "12",
       "title": "Samsung Galaxy Tab S8: Produktivitas dan Hiburan dalam Satu Genggaman",
       "slug": "samsung-galaxy-tab-s8",
       "thumbnail": "/images/samsung-galaxy-tab-s8.png",
@@ -121,7 +121,7 @@
       "excerpt": "Samsung Galaxy Tab S8 adalah tablet Android serbaguna dengan S Pen yang responsif, layar berkualitas tinggi, dan performa mumpuni untuk kerja maupun hiburan."
     },
     {
-      "id": 13,
+      "id": "13",
       "title": "Xiaomi Pad 5: Tablet Murah dengan Tampilan Mewah",
       "slug": "xiaomi-pad-5",
       "thumbnail": "/images/xiaomi-pad-5.png",
@@ -131,7 +131,7 @@
       "excerpt": "Xiaomi Pad 5 menawarkan pengalaman tablet premium dengan harga terjangkau. Layar 11 inci 120Hz dan performa yang baik menjadikannya pilihan menarik untuk hiburan dan produktivitas ringan."
     },
     {
-      "id": 14,
+      "id": "14",
       "title": "Realme GT 5 Pro: Spek Dewa, Harga Masuk Akal",
       "slug": "realme-gt-5-pro",
       "thumbnail": "/images/realme-gt-5-pro.png",
@@ -141,7 +141,7 @@
       "excerpt": "Realme GT 5 Pro hadir dengan spesifikasi flagship seperti RAM 16GB dan storage 512GB, menjanjikan performa luar biasa untuk gaming dan multitasking berat."
     },
     {
-      "id": 15,
+      "id": "15",
       "title": "iPad Pro 11\" M4: Tablet Super dengan Performa Laptop",
       "slug": "ipad-pro-11-m4",
       "thumbnail": "/images/ipad-pro-11-m4.png",
@@ -151,7 +151,7 @@
       "excerpt": "iPad Pro 11\" dengan chip M4 terbaru menawarkan performa sekelas laptop, layar Ultra Retina XDR yang memukau, dan dukungan untuk Apple Pencil Pro. Pilihan utama bagi profesional kreatif."
     },
     {
-      "id": 16,
+      "id": "16",
       "title": "ASUS Zenbook 14 OLED: Layar Memukau, Desain Menawan",
       "slug": "asus-zenbook-14-oled",
       "thumbnail": "/images/asus-zenbook-14-oled.png",
@@ -163,7 +163,7 @@
   ],
   "DetailArticles": [
     {
-      "id": 1,
+      "id": "1",
       "slug": "samsung-galaxy-s23",
       "title": "Samsung Galaxy S23: Mengukir Standar Baru Smartphone Premium",
       "image": "/images/samsung-galaxy-s23.png",
@@ -178,7 +178,7 @@
       "section2Content": "Galaxy S23 mengusung sistem kamera belakang tiga lensa: kamera utama 50 MP (f/1.8, OIS, Dual Pixel PDAF) untuk foto detail dengan dynamic range luas, ultrawide 12 MP (f/2.2) untuk bidikan lanskap, dan telefoto 10 MP (f/2.4, 3x optical zoom) untuk zoom tajam hingga 30x digital. Fitur Nightography menghasilkan foto malam dengan noise minimal, sementara Photo Assist berbasis AI memungkinkan pengeditan canggih, seperti menghapus objek atau membuat efek slo-mo. Kamera selfie 12 MP mendukung video 4K 60fps, dan aplikasi Expert RAW memenuhi kebutuhan fotografer profesional. Untuk daya tahan, baterai 3,900 mAh mampu bertahan seharian untuk penggunaan normal, didukung pengisian cepat 25W (0-50% dalam 30 menit), pengisian nirkabel 15W, dan wireless power sharing 4.5W, menjadikan Galaxy S23 serbaguna untuk gaya hidup modern."
     },
     {
-      "id": 2,
+      "id": "2",
       "slug": "xiaomi-redmi-note-12",
       "title": "Xiaomi Redmi Note 12: Performa Andal dengan Harga Terjangkau",
       "image": "/images/xiaomi-redmi-note-12.png",
@@ -193,7 +193,7 @@
       "section2Content": "Dengan desainnya yang simpel namun modern, Redmi Note 12 menawarkan tampilan yang menarik. MIUI terbaru juga membawa berbagai fitur tambahan yang memudahkan penggunaan sehari-hari, menjadikannya pilihan yang ideal bagi pelajar atau pengguna dengan kebutuhan dasar namun ingin tampil gaya."
     },
     {
-      "id": 3,
+      "id": "3",
       "slug": "asus-rog-zephyrus-g14",
       "title": "ASUS ROG Zephyrus G14: Unggulan Laptop Tahun 2023",
       "image": "/images/asus-rog-zephyrus-g14.png",
@@ -208,7 +208,7 @@
       "section2Content": "Meskipun bertenaga, ROG Zephyrus G14 tetap mempertahankan profil yang tipis dan ringan, membuatnya mudah dibawa bepergian. Daya tahan baterai yang cukup baik untuk laptop gaming juga memungkinkannya digunakan untuk produktivitas di luar sesi gaming. Ini adalah pilihan ideal bagi mereka yang menginginkan performa gaming serius tanpa mengorbankan portabilitas."
     },
     {
-      "id": 4,
+      "id": "4",
       "slug": "apple-ipad-air-5",
       "title": "Apple iPad Air 5: Unggulan Tablet Tahun 2022",
       "image": "/images/apple-ipad-air-5.png",
@@ -223,7 +223,7 @@
       "section2Content": "Sebagai bagian dari ekosistem Apple, iPad Air 5 terintegrasi mulus dengan perangkat Apple lainnya. iPadOS menyediakan fitur-fitur produktivitas yang kuat dan akses ke jutaan aplikasi di App Store. Baik untuk belajar, bekerja, menggambar, atau menonton, iPad Air 5 menawarkan fleksibilitas yang luar biasa."
     },
     {
-      "id": 5,
+      "id": "5",
       "slug": "iphone-14-pro",
       "title": "iPhone 14 Pro: Gaya dan Performa Sinematik dari Apple",
       "image": "/images/iphone-14-pro.png",
@@ -238,7 +238,7 @@
       "section2Content": "Dynamic Island adalah cara baru yang inovatif untuk berinteraksi dengan notifikasi dan aktivitas langsung. Dipadukan dengan iOS yang intuitif dan kaya fitur, iPhone 14 Pro menawarkan pengalaman pengguna yang kohesif dan powerful. Rating 4.8 mencerminkan kepuasan tinggi pengguna terhadap perangkat ini."
     },
     {
-      "id": 6,
+      "id": "6",
       "slug": "infinix-zero-5g",
       "title": "Infinix Zero 5G: Performa Ngebut Harga Hemat",
       "image": "/images/infinix-zero-5g.png",
@@ -253,7 +253,7 @@
       "section2Content": "Infinix Zero 5G menawarkan paket lengkap dengan harga yang sangat kompetitif. Fitur konektivitas 5G, performa yang andal, dan baterai tahan lama menjadikannya pilihan menarik bagi pengguna yang memiliki budget terbatas namun menginginkan fitur modern. Rating 4.0 menunjukkan bahwa ini adalah perangkat yang solid untuk harganya."
     },
     {
-      "id": 7,
+      "id": "7",
       "slug": "vivo-v25",
       "title": "Vivo V25: Kamera Jernih dan Desain Menawan untuk Konten Kreator",
       "image": "/images/vivo-v25.png",
@@ -268,7 +268,7 @@
       "section2Content": "Vivo V25 tidak hanya unggul di spesifikasi, tetapi juga memiliki desain yang 'kece' dan modern. Berbagai fitur kamera dan video yang inovatif mendukung kreativitas pengguna. Rating 4.3 menunjukkan kepuasan pengguna terhadap kombinasi kamera, desain, dan performa yang ditawarkan."
     },
     {
-      "id": 8,
+      "id": "8",
       "slug": "macbook-air-m2",
       "title": "MacBook Air M2: Tipis, Ringan, dan Kencang untuk Produktivitas",
       "image": "/images/macbook-air-m2.png",
@@ -283,7 +283,7 @@
       "section2Content": "Dengan bobot hanya 1.24 kg dan ketebalan 1.13 cm, MacBook Air M2 sangat mudah dibawa ke mana saja. Daya tahan baterai hingga 18 jam memungkinkan Anda bekerja seharian tanpa perlu mengisi daya. Integrasi dengan ekosistem Apple menambah kenyamanan dan produktivitas. Rating 4.7 membuktikan keunggulannya."
     },
     {
-      "id": 9,
+      "id": "9",
       "slug": "dell-xps-13",
       "title": "Dell XPS 13: Desain Premium dan Layar Menakjubkan",
       "image": "/images/dell-xps-13.png",
@@ -298,7 +298,7 @@
       "section2Content": "Dell XPS 13 sangat portabel berkat ukurannya yang ringkas dan bobotnya yang ringan. Daya tahan baterai yang baik mendukung produktivitas di perjalanan. Ini adalah pilihan ideal bagi para profesional yang membutuhkan laptop Windows yang andal, bergaya, dan mudah dibawa. Rating 4.5 menunjukkan kualitasnya yang konsisten."
     },
     {
-      "id": 10,
+      "id": "10",
       "slug": "msi-prestige-13-ai-evo",
       "title": "MSI Prestige 13 AI Evo: Powerful dan Stylish untuk Kreator",
       "image": "/images/msi-prestige-13-ai-evo.png",
@@ -313,7 +313,7 @@
       "section2Content": "Laptop ini dirancang untuk meningkatkan produktivitas para kreator. Port yang lengkap, keyboard yang nyaman, dan software MSI eksklusif membantu mengoptimalkan alur kerja. Rating 4.7 menandakan bahwa ini adalah perangkat yang sangat mumpuni dan disukai oleh penggunanya."
     },
     {
-      "id": 11,
+      "id": "11",
       "slug": "lenovo-loq-15i",
       "title": "Lenovo LOQ 15i: Laptop Gaming Murah Tapi Mantap",
       "image": "/images/lenovo-loq-15i.png",
@@ -328,7 +328,7 @@
       "section2Content": "Lenovo LOQ 15i menawarkan nilai yang sangat baik di kelasnya. Keyboard gaming yang nyaman, konektivitas yang lengkap, dan kualitas build yang solid menjadikannya pilihan cerdas bagi pelajar atau gamer pemula yang mencari laptop gaming pertama mereka. Rating 4.6 menunjukkan kepuasan pengguna terhadap performa dan harganya."
     },
     {
-      "id": 12,
+      "id": "12",
       "slug": "samsung-galaxy-tab-s8",
       "title": "Samsung Galaxy Tab S8: Produktivitas dan Hiburan dalam Satu Genggaman",
       "image": "/images/samsung-galaxy-tab-s8.png",
@@ -343,7 +343,7 @@
       "section2Content": "Dengan Samsung DeX, Galaxy Tab S8 dapat bertransformasi menjadi pengalaman mirip desktop, meningkatkan produktivitas. Fleksibilitas sistem operasi Android memungkinkan kustomisasi dan akses ke berbagai aplikasi. Rating 4.5 menegaskan posisinya sebagai tablet Android kelas atas."
     },
     {
-      "id": 13,
+      "id": "13",
       "slug": "xiaomi-pad-5",
       "title": "Xiaomi Pad 5: Tablet Murah dengan Tampilan Mewah",
       "image": "/images/xiaomi-pad-5.png",
@@ -358,7 +358,7 @@
       "section2Content": "Xiaomi Pad 5 adalah pilihan yang sangat baik bagi mereka yang mencari tablet serbaguna tanpa menguras kantong. Desainnya yang premium dan fitur-fitur unggulan menjadikannya 'tablet murah tapi tampil mewah'. Rating 4.3 menunjukkan nilai yang baik untuk harganya."
     },
     {
-      "id": 14,
+      "id": "14",
       "slug": "realme-gt-5-pro",
       "title": "Realme GT 5 Pro: Spek Dewa, Harga Masuk Akal",
       "image": "/images/realme-gt-5-pro.png",
@@ -373,7 +373,7 @@
       "section2Content": "Dengan kombinasi performa 'dewa' dan harga yang masih masuk akal, Realme GT 5 Pro adalah pilihan yang sangat menarik sebagai daily driver bagi pengguna aktif dan gamer. Rating 4.6 menunjukkan bahwa ponsel ini berhasil memenuhi ekspektasi tinggi para penggunanya."
     },
     {
-      "id": 15,
+      "id": "15",
       "slug": "ipad-pro-11-m4",
       "title": "iPad Pro 11\" M4: Tablet Super dengan Performa Laptop",
       "image": "/images/ipad-pro-11-m4.png",
@@ -388,7 +388,7 @@
       "section2Content": "iPad Pro 11\" M4 adalah 'raja' tablet yang menawarkan pengalaman super smooth dan multitasking yang mantap. Dengan iPadOS dan ekosistem aplikasi profesional yang terus berkembang, tablet ini memberdayakan para kreatif untuk bekerja tanpa batas. Rating 4.9 mencerminkan keunggulannya yang nyaris sempurna."
     },
     {
-      "id": 16,
+      "id": "16",
       "slug": "asus-zenbook-14-oled",
       "title": "ASUS Zenbook 14 OLED: Layar Memukau, Desain Menawan",
       "image": "/images/asus-zenbook-14-oled.png",
@@ -403,19 +403,21 @@
       "section2Content": "ASUS Zenbook 14 OLED adalah pilihan yang sempurna bagi para profesional dan kreator yang menghargai kualitas visual superior, portabilitas, dan desain yang menawan. Kombinasi performa solid dan layar OLED yang memanjakan mata menjadikannya laptop yang 'bikin betah'. Rating 4.7 menegaskan kualitasnya."
     }
   ],
-
   "users": [
     {
-      "id": 1,
-      "name": "agata",
+      "id": "1",
+      "name": "agata mulia",
       "email": "agata@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "profileimg": "",
+      "photo": null
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "fahmi",
       "email": "fahmi@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "profileimg": ""
     }
   ]
 }
