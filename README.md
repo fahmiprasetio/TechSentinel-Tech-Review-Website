@@ -10,6 +10,9 @@ Install my-project with npm
 ```bash
   npm install
 ```
+```bash
+json-server --watch db.json --port 5000
+```
 Untuk menjalankan 
 ```bash
 npm run dev
