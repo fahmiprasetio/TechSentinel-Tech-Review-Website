@@ -1,7 +1,21 @@
 /* src/styles/navbar.css */
+
 .btn-active {
-    font-weight: bold;
-    background-color: #2563eb; /* biru */
-    color: white;
-  }
+  font-weight: bold;
+  background-color: #202D38; 
+  color: white;
+  border: 2px solid white;      
+  border-radius: 6px;
+   transition: all 0.3s ease;
+}
+
+/* efek hover ke list item dropdown */
+
+.dropdown-content li:hover {
+  color: white;
   
+  transition: background-color 0.7s ease;
+}
+
+
+

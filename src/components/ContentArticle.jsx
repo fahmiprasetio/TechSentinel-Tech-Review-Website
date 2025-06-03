@@ -44,10 +44,8 @@ const ContentArticle = ({ slug }) => {
 
   return (
     <div
-      className="relative bg-center bg-contain min-h-screen px-4 sm:px-8 py-12"
-      style={{ backgroundImage: "url('/bg-riviw.svg')" }}
-    >
-      <div className="absolute inset-0 bg-black bg-opacity-60 z-0" />
+      className="relative bg-center bg-contain min-h-screen px-4 sm:px-8 py-12 bg-gradient-to-br from-slate-500 via-gray-900"  >
+      <div className="absolute inset-0  bg-opacity-60 z-0" />
 
       <div className="relative z-10 max-w-screen-lg mx-auto p-6 rounded-lg">
         <h1 className="text-white font-semibold lg:text-3xl sm:text-xl md:text-2xl text-center mb-8 drop-shadow-md">

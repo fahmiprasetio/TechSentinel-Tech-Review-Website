@@ -3,7 +3,8 @@ import "../styles/navbar.css";
 
 const ErrorPage = () => {
   return (
-    <div className="bg-[url('/Background-4.png')] bg-no-repeat bg-cover">
+    <div className=" bg-no-repeat bg-cover bg-gradient-to-br from-gray-900 via-indigo-900 to-black
+">
     <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
      
 
