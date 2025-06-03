@@ -56,6 +56,7 @@ useEffect(() => {
       });
       setPhoto(base64Image);
       setUserData(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
     };
     reader.readAsDataURL(file);
   };
@@ -69,6 +70,7 @@ useEffect(() => {
     });
     setPhoto(null);
     setUserData(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
   };
 
   const saveName = async () => {

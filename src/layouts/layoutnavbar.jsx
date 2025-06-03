@@ -1,11 +1,15 @@
-
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/navbar.css";
 
 function RootLayout() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
+  const [user, setUser] = useState(() => {
+  const storedUser = localStorage.getItem("user");
+  return storedUser ? JSON.parse(storedUser) : null;
+});
+
 
   useEffect(() => {
     if (!isLoggedIn && window.location.pathname !== "/Loginpage") {
@@ -13,23 +17,34 @@ function RootLayout() {
     } else if (isLoggedIn && window.location.pathname === "/Loginpage") {
       navigate("/");
     }
+
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (isLoggedIn && storedUser) {
+      setUser(storedUser);
+    }
   }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    const updatedUser = JSON.parse(localStorage.getItem("user"));
+    setUser(updatedUser);
+  }, 100); // cek setiap detik
+
+  return () => clearInterval(interval);
+}, []);
+
 
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-50 navbar bg-gray-900 shadow-sm text-white">
-        {/* KIRI: Logo dan Menu Dropdown Mobile */}
         <div className="navbar-start ">
-          {/* Brand */}
           <NavLink
-              to="/"
-              className=" hidden lg:block py-2 btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none"
-            >
-              TechSentinel
-            </NavLink>
+            to="/"
+            className=" hidden lg:block py-2 btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none"
+          >
+            TechSentinel
+          </NavLink>
 
-
-          {/* Dropdown menu untuk mobile */}
           <div className="dropdown lg:hidden ml-2 ">
             <div
               tabIndex={0}
@@ -61,7 +76,6 @@ function RootLayout() {
                 >
                   Homepage
                 </NavLink>
-
               </li>
               <li>
                 <NavLink
@@ -72,7 +86,6 @@ function RootLayout() {
                 >
                   Technology
                 </NavLink>
-
               </li>
               <li>
                 <NavLink
@@ -83,7 +96,6 @@ function RootLayout() {
                 >
                   Article
                 </NavLink>
-
               </li>
               <li>
                 <NavLink
@@ -104,15 +116,13 @@ function RootLayout() {
                 >
                   About
                 </NavLink>
-
               </li>
             </ul>
           </div>
         </div>
 
-        {/* TENGAH: Navigasi untuk desktop */}
         <div className="navbar-center ">
-          <div className="lg:hidden"> 
+          <div className="lg:hidden">
             <NavLink
               to="/"
               className="btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none "
@@ -176,23 +186,25 @@ function RootLayout() {
           </div>
         </div>
 
-        {/* KANAN: Avatar/Profile */}
         <div className="navbar-end">
           <NavLink
             to={isLoggedIn ? "/ProfilePage" : "/Loginpage"}
             className="btn btn-ghost btn-circle avatar"
           >
-            <div className="w-10 rounded-full bg-white">
-              <img
-                alt="Profile"
-                src="https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"
-              />
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-white">
+             <img
+  alt="Profile"
+  src={
+    user?.photo
+      ? user.photo
+      : "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"
+  }
+/>
             </div>
           </NavLink>
         </div>
       </div>
 
-      {/* KONTEN UTAMA */}
       <div className="pt-16">
         <Outlet />
       </div>
@@ -201,4 +213,3 @@ function RootLayout() {
 }
 
 export default RootLayout;
-
