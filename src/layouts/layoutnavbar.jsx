@@ -36,7 +36,7 @@ function RootLayout() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full z-50 navbar bg-gray-900 shadow-sm text-white">
+      <div className="fixed top-0 left-0 w-full z-50 navbar bg-gray-800 shadow-sm text-white">
         <div className="navbar-start ">
           <NavLink
             to="/"

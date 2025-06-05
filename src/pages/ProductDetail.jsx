@@ -37,17 +37,14 @@ export default function ProductDetail() {
   }
 
   // Favorit
-  const [isFavorited, setIsFavorited] = useState(false);
-  const userId = '123'; // Ubah ini sesuai autentikasi user 
+const [isFavorited, setIsFavorited] = useState(false);
+const userId = '123'; // Ganti sesuai sistem autentikasi Anda
 
-  const handleToggleFavorite = async () => {
-    setIsFavorited(prev => !prev);
-    const url = isFavorited
-      ? 'https://your-api-domain.com/api/favorite/delete'
-      : 'https://your-api-domain.com/api/favorite/add';
-
+useEffect(() => {
+  // Mengecek apakah teknologi sudah ada di daftar favorit user
+  const checkFavoriteStatus = async () => {
     try {
-      await fetch(url, {
+      const res = await fetch('https://tech-sentinel-api.vercel.app/api/favorite/check', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -55,10 +52,55 @@ export default function ProductDetail() {
           id_tech: product.id_tech,
         }),
       });
+
+      const data = await res.json();
+      // Asumsikan API mengembalikan properti `isFavorited: true/false`
+      setIsFavorited(data.isFavorited);
     } catch (err) {
-      console.error('Gagal menyimpan ke favorit:', err);
+      console.error('Gagal memeriksa status favorit:', err);
     }
   };
+
+  checkFavoriteStatus();
+}, [product.id_tech]);
+
+const handleToggleFavorite = async () => {
+const endpoint = isFavorited
+  ? 'https://tech-sentinel-api.vercel.app/api/favorite/delete'
+  : 'https://tech-sentinel-api.vercel.app/api/favorite/add';
+
+await fetch(endpoint, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    id_user: userId,
+    id_tech: product.id_tech,
+  }),
+});
+
+
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id_user: userId,
+        id_tech: product.id_tech,
+      }),
+    });
+
+    if (res.ok) {
+      setIsFavorited(!isFavorited);
+    } else {
+      const errData = await res.json();
+      console.error('Gagal update favorit:', errData.message || 'Unknown error');
+    }
+  } catch (err) {
+    console.error('Terjadi kesalahan saat toggle favorit:', err);
+  }
+};
+
+
 
   return (
     <div className="min-h-full w-full bg-gradient-to-b from-black/70 via-black/30 to-black/50 text-white pb-20">
@@ -77,20 +119,20 @@ export default function ProductDetail() {
         <div className="w-full md:w-2/3 text-left text-lg mt-16">
           <h1 className="text-4xl mb-2 font-bold flex items-center gap-3">
             {product.tech_name}
-            <button
-              onClick={handleToggleFavorite}
-              aria-label="Simpan ke Favorit"
-              className="transition mt-1"
-            >
-              <Bookmark 
-                size={48} 
-                strokeWidth={2}
-                className={`w-6 h-6 ${
-                  isFavorited ? 'text-yellow-400 fill-yellow-400' : 'text-white/80 hover:text-yellow-300'
-                }`}
-                fill={isFavorited ? 'currentColor' : 'none'}
-              />
-            </button>
+              <button
+                onClick={handleToggleFavorite}
+                aria-label="Simpan ke Favorit"
+                className="transition mt-1"
+              >
+                <Bookmark 
+                  size={48} 
+                  strokeWidth={2}
+                  className={`w-6 h-6 ${
+                    isFavorited ? 'text-yellow-400 fill-yellow-400' : 'text-white/80 hover:text-yellow-300'
+                  }`}
+                  fill={isFavorited ? 'currentColor' : 'none'}
+                />
+              </button>
           </h1>
 
           <div className="flex items-center space-x-2 text-yellow-400 text-xl font-semibold">
@@ -128,8 +170,8 @@ export default function ProductDetail() {
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
-                  {tab === 'description' && 'Deskripsi'}
-                  {tab === 'specifications' && 'Spesifikasi'}
+                  {tab === 'description' && 'Description'}
+                  {tab === 'specifications' && 'Specifications'}
                   {tab === 'ratingReviews' && 'Rating & Reviews'}
                 </button>
               ))}
@@ -211,7 +253,7 @@ export default function ProductDetail() {
                         onClick={() => navigate(`/technology/comments/${product.id_tech}`)}
                         className="inline-flex items-center gap-2 text-white border-2 border-white pl-4 pr-3 py-2 rounded-lg hover:bg-white hover:text-black transition font-medium text-base"
                       >
-                        Lihat komentar lainnya <ChevronsRight size={18} />
+                        View More Comments <ChevronsRight size={18} />
                       </button>
                     </div>
                   </motion.div>
@@ -226,7 +268,7 @@ export default function ProductDetail() {
       {/* Produk Serupa */}
       <div className="mt-12 -mb-10 max-w-7xl mx-auto">
         <hr className="border-t border-1 border-white mb-8" />
-        <h2 className="text-2xl font-semibold mb-6 mx-auto">Teknologi Serupa</h2>
+        <h2 className="text-2xl font-semibold mb-6 mx-auto">Similar Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {allTechnologies
             .filter(item => item.id_tech !== product.id_tech && item.category.toLowerCase() === product.category.toLowerCase())
@@ -257,7 +299,7 @@ export default function ProductDetail() {
                   }}
                   className="mt-4 mb-3 ml-3 inline-block bg-transparent border border-white text-white px-4 py-2 rounded-xl hover:bg-white hover:text-black transition"
                 >
-                  Lihat Detail
+                  View Details
                 </button>
               </div>
             ))}
