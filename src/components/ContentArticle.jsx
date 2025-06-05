@@ -44,11 +44,11 @@ const ContentArticle = ({ slug }) => {
 
   return (
     <div
-      className="relative bg-center bg-contain min-h-screen px-4 sm:px-8 py-12 bg-gradient-to-br from-slate-500 via-gray-900"  >
+      className="relative bg-center bg-contain min-h-screen px-4 sm:px-8 py-12 bg-gradient-to-br from-slate-500/5 via-gray-900/5 backdrop-blur-sm"  >
       <div className="absolute inset-0  bg-opacity-60 z-0" />
 
       <div className="relative z-10 max-w-screen-lg mx-auto p-6 rounded-lg">
-        <h1 className="text-white font-semibold lg:text-3xl sm:text-xl md:text-2xl text-center mb-8 drop-shadow-md">
+        <h1 className="text-white font-bold lg:text-3xl sm:text-xl md:text-2xl text-center mb-8 drop-shadow-md">
           {article.title}
         </h1>
 
@@ -61,7 +61,7 @@ const ContentArticle = ({ slug }) => {
               className="w-full h-[250px] object-cover rounded shadow-md"
             />
           </div>
-          <div className="w-full xl:w-1/2 text-slate-200 text-base max-w-xl sm:mx-auto md:mx-auto">
+          <div className="w-full xl:w-1/2 text-slate-200 text-base max-w-xl sm:mx-auto md:mx-auto font-normal">
             <p>{article.intro}</p>
           </div>
         </div>
@@ -125,7 +125,7 @@ const ContentArticle = ({ slug }) => {
             {recommended.map((item) => (
               <div
                 key={item.id}
-                className="bg-slate-800 border border-slate-500 rounded shadow-md overflow-hidden flex flex-col min-w-[250px] max-w-[250px] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear hover:bg-opacity-10 hover:bg-slate-300"
+                className=" bg-white/10 backdrop-blur-md border border-slate-500 rounded shadow-md overflow-hidden flex flex-col min-w-[250px] max-w-[250px] hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-linear  hover:bg-slate-300/5 hover:"
               >
                 <img
                   src={item.thumbnail}
