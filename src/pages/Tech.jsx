@@ -480,7 +480,7 @@ export default function TechPage() {
           {filteredTechs.map((tech) => (
             <div
               key={tech.id_tech}
-              className="group border rounded-lg p-4 text-white shadow-md bg-white/10 transition duration-300 ease-in-out hover:shadow-2xl backdrop-blur-md"
+              className="group border border-white/40 rounded-lg p-4 text-white shadow-md bg-white/10 transition duration-300 ease-in-out hover:shadow-2xl backdrop-blur-md"
               // style={{
               //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('Background-4.2.png')`,
               //   backgroundSize: 'cover',
