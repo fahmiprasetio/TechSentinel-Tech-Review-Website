@@ -20,12 +20,13 @@ const Article = () => {
   const [tempSearchTerm, setTempSearchTerm] = useState(searchTerm); // hanya update ketika Enter
 
   useEffect(() => {
+      const API_URL = import.meta.env.VITE_API_URL;
     const fetchArticles = async () => {
       try {
-        const response = await fetch("http://localhost:5000/articles");
+        const response = await fetch(`${API_URL}/articles`);
         if (!response.ok) throw new Error("Gagal mengambil data");
         const data = await response.json();
-        setArticles(data);
+        setArticles(data.data);
       } catch (err) {
         console.error("Terjadi kesalahan saat fetch:", err);
       }
