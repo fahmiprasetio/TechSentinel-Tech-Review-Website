@@ -12,7 +12,9 @@ export default function ProductDetail() {
   const [allTechnologies, setAllTechnologies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // DTA USER NGAMBIL DARI SINI
   const userId = localStorage.getItem("userId");
+
   const [activeTab, setActiveTab] = useState('description');
   const tabRefs = {
     description: useRef(null),
