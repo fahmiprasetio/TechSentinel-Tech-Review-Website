@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 import "../styles/navbar.css";
 
 function RootLayout() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
   const [user, setUser] = useState(() => {
-  const storedUser = localStorage.getItem("user");
-  return storedUser ? JSON.parse(storedUser) : null;
-});
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
+  const isLoggedIn = localStorage.getItem("user") !== null;
 
   useEffect(() => {
     if (!isLoggedIn && window.location.pathname !== "/Loginpage") {
-      navigate("/");
+      navigate("/Loginpage");
     } else if (isLoggedIn && window.location.pathname === "/Loginpage") {
       navigate("/");
     }
@@ -25,35 +25,34 @@ function RootLayout() {
   }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    const updatedUser = JSON.parse(localStorage.getItem("user"));
-    setUser(updatedUser);
-  }, 100); // cek setiap detik
+    const interval = setInterval(() => {
+      const updatedUser = JSON.parse(localStorage.getItem("user"));
+      setUser(updatedUser);
+    }, 100); // cek setiap 100ms
 
-  return () => clearInterval(interval);
-}, []);
-
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-50 navbar bg-gray-900 shadow-sm text-white">
-        <div className="navbar-start ">
+        <div className="navbar-start">
           <NavLink
             to="/"
-            className=" hidden lg:block py-2 btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none"
+            className="hidden lg:block py-2 btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none"
           >
             TechSentinel
           </NavLink>
 
-          <div className="dropdown lg:hidden ml-2 ">
+          <div className="dropdown lg:hidden ml-2">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle "
+              className="btn btn-ghost btn-circle"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 "
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -66,66 +65,21 @@ function RootLayout() {
                 />
               </svg>
             </div>
-            <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-slate-400 rounded-box w-52 text-black z-50 ">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""} `
-                  }
-                >
-                  Homepage
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/technology"
-                  className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""}`
-                  }
-                >
-                  Technology
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/article"
-                  className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""}`
-                  }
-                >
-                  Article
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/comparison"
-                  className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""}`
-                  }
-                >
-                  Comparison
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""}`
-                  }
-                >
-                  About
-                </NavLink>
-              </li>
+            <ul className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-slate-400 rounded-box w-52 text-black z-50">
+              <li><NavLink to="/">Homepage</NavLink></li>
+              <li><NavLink to="/technology">Technology</NavLink></li>
+              <li><NavLink to="/article">Article</NavLink></li>
+              <li><NavLink to="/comparison">Comparison</NavLink></li>
+              <li><NavLink to="/about">About</NavLink></li>
             </ul>
           </div>
         </div>
 
-        <div className="navbar-center ">
+        <div className="navbar-center">
           <div className="lg:hidden">
             <NavLink
               to="/"
-              className="btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none "
+              className="btn btn-ghost text-xl animate-pulse hover:text-white hover:bg-slate-700 hover:animate-none"
             >
               TechSentinel
             </NavLink>
@@ -136,7 +90,7 @@ function RootLayout() {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""} text-base mx-2 hover:bg-slate-700 `
+                    `${isActive ? "btn-active" : ""} text-base mx-2 hover:bg-slate-700`
                   }
                 >
                   Homepage
@@ -146,7 +100,7 @@ function RootLayout() {
                 <NavLink
                   to="/technology"
                   className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""} text-base mx-2  hover:bg-slate-700`
+                    `${isActive ? "btn-active" : ""} text-base mx-2 hover:bg-slate-700`
                   }
                 >
                   Technology
@@ -156,7 +110,7 @@ function RootLayout() {
                 <NavLink
                   to="/article"
                   className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""} text-base mx-2  hover:bg-slate-700`
+                    `${isActive ? "btn-active" : ""} text-base mx-2 hover:bg-slate-700`
                   }
                 >
                   Article
@@ -166,7 +120,7 @@ function RootLayout() {
                 <NavLink
                   to="/comparison"
                   className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""} text-base mx-2  hover:bg-slate-700`
+                    `${isActive ? "btn-active" : ""} text-base mx-2 hover:bg-slate-700`
                   }
                 >
                   Comparison
@@ -176,7 +130,7 @@ function RootLayout() {
                 <NavLink
                   to="/about"
                   className={({ isActive }) =>
-                    `${isActive ? "btn-active" : ""} text-base mx-2  hover:bg-slate-700`
+                    `${isActive ? "btn-active" : ""} text-base mx-2 hover:bg-slate-700`
                   }
                 >
                   About
@@ -192,15 +146,14 @@ function RootLayout() {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 h-10 rounded-full overflow-hidden bg-white">
-            <img
-  alt="Profile"
-  src={
-    user?.profile_picture
-      ? user.profile_picture
-      : "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"
-  }
-/>
-
+              <img
+                alt="Profile"
+                src={
+                  user?.profile_picture
+                    ? user.profile_picture
+                    : "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"
+                }
+              />
             </div>
           </NavLink>
         </div>

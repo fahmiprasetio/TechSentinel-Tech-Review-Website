@@ -12,7 +12,11 @@ export default function ProductDetail() {
   const [allTechnologies, setAllTechnologies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const userId = localStorage.getItem("userId");
+  // Data User diambil dari sini
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?.id_user;
+  console.log("User ID dari localStorage:", userId);
+
   const [activeTab, setActiveTab] = useState('description');
   const tabRefs = {
     description: useRef(null),

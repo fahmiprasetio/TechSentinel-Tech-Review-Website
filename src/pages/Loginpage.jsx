@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
@@ -13,7 +12,8 @@ const LoginPage = () => {
   e.preventDefault();
 
   try {
-    const response = await fetch("https://backend-techsentinel.vercel.app/auth/login", {
+    const API_URL = import.meta.env.VITE_API_URL;
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
