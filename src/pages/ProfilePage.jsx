@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
+  const [storedUser, setStoredUser] = useState(null);
   const [userData, setUserData] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [newName, setNewName] = useState("");
   const [isEditingName, setIsEditingName] = useState(false);
   const navigate = useNavigate();
 
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-
   useEffect(() => {
-    if (!storedUser?.token) {
+    const userFromStorage = JSON.parse(localStorage.getItem("user"));
+    setStoredUser(userFromStorage);
+
+    if (!userFromStorage?.token) {
       navigate("/LoginPage");
       return;
     }
@@ -20,7 +22,7 @@ const ProfilePage = () => {
       try {
         const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
           headers: {
-            Authorization: `Bearer ${storedUser.token}`,
+            Authorization: `Bearer ${userFromStorage.token}`,
           },
         });
 
@@ -30,7 +32,7 @@ const ProfilePage = () => {
         if (result.success && result.data) {
           setUserData(result.data);
           setPhoto(result.data.profile_picture || null);
-          setNewName((prev) => prev || result.data.user_name);
+          setNewName(result.data.user_name);
         } else {
           throw new Error("Data profil tidak valid");
         }
@@ -42,7 +44,7 @@ const ProfilePage = () => {
     };
 
     fetchUser();
-  }, [storedUser, navigate]);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -51,7 +53,6 @@ const ProfilePage = () => {
 
   const saveName = async () => {
     if (!newName) return alert("Nama tidak boleh kosong!");
-
     try {
       const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
         method: "PATCH",
@@ -69,6 +70,7 @@ const ProfilePage = () => {
       setIsEditingName(false);
 
       localStorage.setItem("user", JSON.stringify({ ...storedUser, user_name: newName }));
+      setStoredUser({ ...storedUser, user_name: newName });
       alert("Nama berhasil diperbarui");
     } catch (error) {
       console.error("Update error:", error);
@@ -78,7 +80,6 @@ const ProfilePage = () => {
 
   const handlePhotoUpload = async (file) => {
     if (!file) return alert("Pilih file terlebih dahulu!");
-
     const formData = new FormData();
     formData.append("profile_picture", file);
 
@@ -97,6 +98,7 @@ const ProfilePage = () => {
       setPhoto(result.data.profile_picture);
       setUserData((prev) => ({ ...prev, profile_picture: result.data.profile_picture }));
       localStorage.setItem("user", JSON.stringify({ ...storedUser, profile_picture: result.data.profile_picture }));
+      setStoredUser({ ...storedUser, profile_picture: result.data.profile_picture });
       alert("Foto profil berhasil diperbarui");
     } catch (error) {
       console.error("Upload error:", error);
@@ -104,35 +106,30 @@ const ProfilePage = () => {
     }
   };
 
-const handleDeletePhoto = async () => {
-  try {
-    console.log("🧪 DELETE FOTO DIPANGGIL");
-    console.log("Token:", storedUser.token);
+  const handleDeletePhoto = async () => {
+    try {
+      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${storedUser.token}`,
+        },
+      });
 
-    const res = await fetch(`https://backend-techsentinel.vercel.app/user/profile`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${storedUser.token}`,
-      },
-    });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
 
-    const result = await res.json();
-    console.log("📦 Response dari server:", result);
+      setPhoto(null);
+      setUserData((prev) => ({ ...prev, profile_picture: null }));
+      localStorage.setItem("user", JSON.stringify({ ...storedUser, profile_picture: null }));
+      setStoredUser({ ...storedUser, profile_picture: null });
+      alert("Foto profil berhasil dihapus");
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert(`Gagal menghapus foto: ${error.message}`);
+    }
+  };
 
-    if (!res.ok || !result.success) throw new Error(result.message);
-
-    setPhoto(null);
-    setUserData((prev) => ({ ...prev, profile_picture: null }));
-    localStorage.setItem("user", JSON.stringify({ ...storedUser, profile_picture: null }));
-    alert("Foto profil berhasil dihapus");
-  } catch (error) {
-    console.error("❌ Delete error:", error);
-    alert(`Gagal menghapus foto: ${error.message}`);
-  }
-};
-
-
-  if (!userData) {
+  if (!storedUser || !userData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white">
         <p>Loading profile...</p>
