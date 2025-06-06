@@ -192,7 +192,7 @@ function RootLayout() {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 h-10 rounded-full overflow-hidden bg-white">
-             <img
+            <img
   alt="Profile"
   src={
     user?.photo
