@@ -10,6 +10,7 @@ const ProfilePage = () => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const userFromStorage = JSON.parse(localStorage.getItem("user"));
@@ -21,7 +22,6 @@ const ProfilePage = () => {
 
     const fetchUser = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL;
         const res = await fetch(`${API_URL}/user/profile`, {
           headers: {
             Authorization: `Bearer ${userFromStorage.token}`,
@@ -48,8 +48,7 @@ const ProfilePage = () => {
 
   const fetchFavorites = async (token) => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
-      const res = await fetch(`${API_URL}/user/profile`, {
+      const res = await fetch(`${API_URL}/favorites`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -69,7 +68,6 @@ const ProfilePage = () => {
   const saveName = async () => {
     if (!newName) return alert("Nama tidak boleh kosong!");
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
       const res = await fetch(`${API_URL}/user/profile`, {
         method: "PATCH",
         headers: {
@@ -94,7 +92,6 @@ const ProfilePage = () => {
     formData.append("profile_picture", file);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
       const res = await fetch(`${API_URL}/user/profile`, {
         method: "PATCH",
         headers: {
@@ -112,7 +109,6 @@ const ProfilePage = () => {
 
   const handleDeletePhoto = async () => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
       const res = await fetch(`${API_URL}/user/profile`, {
         method: "DELETE",
         headers: {
