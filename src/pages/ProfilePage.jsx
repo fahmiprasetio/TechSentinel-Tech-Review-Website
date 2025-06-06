@@ -21,7 +21,8 @@ const ProfilePage = () => {
 
     const fetchUser = async () => {
       try {
-        const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+        const API_URL = import.meta.env.VITE_API_URL;
+        const res = await fetch(`${API_URL}/user/profile`, {
           headers: {
             Authorization: `Bearer ${userFromStorage.token}`,
           },
@@ -47,7 +48,8 @@ const ProfilePage = () => {
 
   const fetchFavorites = async (token) => {
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/favorites", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API_URL}/user/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -67,7 +69,8 @@ const ProfilePage = () => {
   const saveName = async () => {
     if (!newName) return alert("Nama tidak boleh kosong!");
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API_URL}/user/profile`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +94,8 @@ const ProfilePage = () => {
     formData.append("profile_picture", file);
 
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API_URL}/user/profile`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${storedUser.token}`,
@@ -108,7 +112,8 @@ const ProfilePage = () => {
 
   const handleDeletePhoto = async () => {
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API_URL}/user/profile`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${storedUser.token}`,
