@@ -69,7 +69,7 @@ function RootLayout() {
               <li><NavLink to="/">Homepage</NavLink></li>
               <li><NavLink to="/technology">Technology</NavLink></li>
               <li><NavLink to="/article">Article</NavLink></li>
-              <li><NavLink to="/comparison">Comparison</NavLink></li>
+              {/* <li><NavLink to="/comparison">Comparison</NavLink></li> */}
               <li><NavLink to="/about">About</NavLink></li>
             </ul>
           </div>
@@ -116,7 +116,7 @@ function RootLayout() {
                   Article
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   to="/comparison"
                   className={({ isActive }) =>
@@ -125,7 +125,7 @@ function RootLayout() {
                 >
                   Comparison
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink
                   to="/about"
