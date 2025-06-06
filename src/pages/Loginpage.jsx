@@ -9,29 +9,65 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+ const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await axios.get("http://localhost:5000/users", {
-        params: {
-          email,
-          password,
-        },
-      });
+  try {
+    const response = await fetch("https://backend-techsentinel.vercel.app/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_email: email,
+        user_password: password,
+      }),
+    });
 
-      if (response.data.length > 0) {
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("user", JSON.stringify(response.data[0]));
-        navigate("/");
-      } else {
-        alert("Email atau password salah!");
-      }
-    } catch (error) {
-      console.error("Login error: ", error);
-      alert("Terjadi kesalahan server!");
+    const resData = await response.json(); // ✅ hanya sekali di sini
+    console.log("Response login:", resData);
+
+    if (!response.ok || !resData.success) {
+      alert("Login gagal: " + (resData.message || "Server error"));
+      return;
     }
-  };
+
+    const { id_user, user_name, user_email, level, profile_picture } = resData.data;
+    const token = resData.token;
+
+    if (!token) {
+      alert("Token tidak ditemukan dalam response.");
+      return;
+    }
+
+    const userWithToken = {
+      id_user,
+      user_name,
+      user_email,
+      level,
+      profile_picture,
+      token,
+    };
+
+    console.log("Login berhasil, menyimpan ke localStorage:", userWithToken);
+    localStorage.setItem("user", JSON.stringify(userWithToken));
+
+    // Cek simpanan
+    const cek = localStorage.getItem("user");
+    if (!cek) {
+      alert("Gagal menyimpan ke localStorage");
+      return;
+    }
+    setTimeout(() => {
+  navigate("/");
+}, 100);
+
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Terjadi error: " + error.message);
+  }
+};
+
 
   return (
     <div
@@ -61,6 +97,7 @@ const LoginPage = () => {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -81,6 +118,7 @@ const LoginPage = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
           </div>
