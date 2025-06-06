@@ -21,7 +21,7 @@ const ProfilePage = () => {
 
     const fetchUser = async () => {
       try {
-        const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+        const res = await fetch(`${API_URL}/user/profile`, {
           headers: {
             Authorization: `Bearer ${userFromStorage.token}`,
           },
@@ -47,7 +47,7 @@ const ProfilePage = () => {
 
   const fetchFavorites = async (token) => {
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/favorites", {
+      const res = await fetch(`${API_URL}/user/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
