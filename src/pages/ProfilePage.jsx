@@ -4,6 +4,7 @@ import { Pencil, LogOut } from "lucide-react";
 
 const ProfilePage = () => {
   const [storedUser, setStoredUser] = useState(null);
+  const [storedUser, setStoredUser] = useState(null);
   const [userData, setUserData] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [newName, setNewName] = useState("");
@@ -16,6 +17,10 @@ const ProfilePage = () => {
     setStoredUser(userFromStorage);
 
     if (!userFromStorage?.token) {
+    const userFromStorage = JSON.parse(localStorage.getItem("user"));
+    setStoredUser(userFromStorage);
+
+    if (!userFromStorage?.token) {
       navigate("/LoginPage");
       return;
     }
@@ -24,6 +29,7 @@ const ProfilePage = () => {
       try {
         const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
           headers: {
+            Authorization: `Bearer ${userFromStorage.token}`,
             Authorization: `Bearer ${userFromStorage.token}`,
           },
         });
