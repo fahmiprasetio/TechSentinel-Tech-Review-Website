@@ -10,9 +10,10 @@ export default function SearchBar() {
 
   // Ganti URL lama dengan API dari tech.jsx
   useEffect(() => {
+    const API_URL = import.meta.env.VITE_API_URL;
     const fetchData = async () => {
       try {
-        const response = await fetch('https://backend-techsentinel.vercel.app/technologies');
+        const response = await fetch(`${API_URL}/technologies`);
         const techData = await response.json();
         setAllTech(techData.data || []);
       } catch (err) {

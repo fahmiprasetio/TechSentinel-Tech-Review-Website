@@ -7,10 +7,11 @@ export default function ProductComments() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const API_URL = import.meta.env.VITE_API_URL;
     window.scrollTo(0, 0);
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`https://backend-techsentinel.vercel.app/technology/${id}`);
+        const res = await fetch(`${API_URL}/technology/${id}`);
         const data = await res.json();
         setProduct(data.data || null);
       } catch (error) {

@@ -63,9 +63,10 @@ export default function TechPage() {
   const [allTechnologies, setAllTechnologies] = useState([]);
 
   useEffect(() => {
+    const API_URL = import.meta.env.VITE_API_URL;
   const fetchTechnologies = async () => {
     try {
-      const response = await fetch("https://backend-techsentinel.vercel.app/technologies");
+      const response = await fetch(`${API_URL}/technologies`);
       if (!response.ok) throw new Error("Gagal mengambil data");
 
       const data = await response.json();

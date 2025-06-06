@@ -25,7 +25,8 @@ export default function FavoriteButton({ product, userId }) {
     try {
       if (isFavorited) {
         // Hapus produk dari favorit (DELETE request)
-        const res = await fetch(`https://backend-techsentinel.vercel.app/favorite/${product.id_tech}`, {
+        const API_URL = import.meta.env.VITE_API_URL;
+        const res = await fetch(`${API_URL}/favorite/${product.id_tech}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -44,7 +45,8 @@ export default function FavoriteButton({ product, userId }) {
         alert(`Produk ${product.tech_name} berhasil dihapus dari favorit!`);
       } else {
         // Tambahkan produk ke favorit (POST request)
-        const res = await fetch(`https://backend-techsentinel.vercel.app/favorite/${product.id_tech}`, {
+        const API_URL = import.meta.env.VITE_API_URL;
+        const res = await fetch(`${API_URL}/favorite/${product.id_tech}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

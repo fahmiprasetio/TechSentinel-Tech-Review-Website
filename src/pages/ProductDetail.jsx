@@ -55,9 +55,10 @@ export default function ProductDetail() {
   }, [id]);
 
   useEffect(() => {
+    const API_URL = import.meta.env.VITE_API_URL;
     const fetchAllTech = async () => {
       try {
-        const res = await fetch('https://backend-techsentinel.vercel.app/technologies');
+        const res = await fetch(`${API_URL}/technologies`);
         const data = await res.json();
         setAllTechnologies(data.data || []);
       } catch (err) {
