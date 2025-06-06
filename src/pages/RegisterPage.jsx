@@ -24,7 +24,8 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await axios.post("https://backend-techsentinel.vercel.app/auth/register", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${API_URL}/auth/register`, {
         user_name,
         user_email,
         user_password,
