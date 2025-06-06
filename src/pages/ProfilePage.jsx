@@ -10,79 +10,127 @@ const ProfilePage = () => {
 
   const storedUser = JSON.parse(localStorage.getItem("user"));
 
-useEffect(() => {
-  if (!storedUser?.email) {
-    navigate("/HomePage");
-    return;
-  }
-
-  const fetchUser = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/users?email=${storedUser.email}`);
-      const data = await response.json();
-      if (data.length > 0) {
-        const user = data[0];
-        setUserData(user);
-        setPhoto(user.photo || null);
-        if (!newName) setNewName(user.name);
-      }
-    } catch (error) {
-      console.error("Gagal mengambil data user:", error);
+  useEffect(() => {
+    if (!storedUser?.token) {
+      navigate("/LoginPage");
+      return;
     }
-  };
 
-  fetchUser();
-}, [storedUser, navigate]);
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+          headers: {
+            Authorization: `Bearer ${storedUser.token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error("Gagal mengambil data user");
+
+        const result = await res.json();
+        if (result.success && result.data) {
+          setUserData(result.data);
+          setPhoto(result.data.profile_picture || null);
+          setNewName((prev) => prev || result.data.user_name);
+        } else {
+          throw new Error("Data profil tidak valid");
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+        alert("Gagal mengambil data user, coba login ulang.");
+        navigate("/LoginPage");
+      }
+    };
+
+    fetchUser();
+  }, [storedUser, navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
     navigate("/");
   };
 
-  const handlePhotoChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-      const base64Image = reader.result;
-
-      const updatedUser = { ...userData, photo: base64Image };
-      await fetch(`http://localhost:5000/users/${userData.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedUser),
-      });
-      setPhoto(base64Image);
-      setUserData(updatedUser);
-      localStorage.setItem("user", JSON.stringify(updatedUser));
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleRemovePhoto = async () => {
-    const updatedUser = { ...userData, photo: null };
-    await fetch(`http://localhost:5000/users/${userData.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedUser),
-    });
-    setPhoto(null);
-    setUserData(updatedUser);
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-  };
-
   const saveName = async () => {
-    const updatedUser = { ...userData, name: newName };
-    await fetch(`http://localhost:5000/users/${userData.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedUser),
-    });
-    setUserData(updatedUser);
-    setIsEditingName(false);
+    if (!newName) return alert("Nama tidak boleh kosong!");
+
+    try {
+      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${storedUser.token}`,
+        },
+        body: JSON.stringify({ user_name: newName }),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
+
+      setUserData((prev) => ({ ...prev, user_name: newName }));
+      setIsEditingName(false);
+
+      localStorage.setItem("user", JSON.stringify({ ...storedUser, user_name: newName }));
+      alert("Nama berhasil diperbarui");
+    } catch (error) {
+      console.error("Update error:", error);
+      alert("Terjadi kesalahan saat memperbarui nama.");
+    }
   };
+
+  const handlePhotoUpload = async (file) => {
+    if (!file) return alert("Pilih file terlebih dahulu!");
+
+    const formData = new FormData();
+    formData.append("profile_picture", file);
+
+    try {
+      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${storedUser.token}`,
+        },
+        body: formData,
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
+
+      setPhoto(result.data.profile_picture);
+      setUserData((prev) => ({ ...prev, profile_picture: result.data.profile_picture }));
+      localStorage.setItem("user", JSON.stringify({ ...storedUser, profile_picture: result.data.profile_picture }));
+      alert("Foto profil berhasil diperbarui");
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("Terjadi kesalahan saat mengunggah foto.");
+    }
+  };
+
+const handleDeletePhoto = async () => {
+  try {
+    console.log("🧪 DELETE FOTO DIPANGGIL");
+    console.log("Token:", storedUser.token);
+
+    const res = await fetch(`https://backend-techsentinel.vercel.app/user/profile`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${storedUser.token}`,
+      },
+    });
+
+    const result = await res.json();
+    console.log("📦 Response dari server:", result);
+
+    if (!res.ok || !result.success) throw new Error(result.message);
+
+    setPhoto(null);
+    setUserData((prev) => ({ ...prev, profile_picture: null }));
+    localStorage.setItem("user", JSON.stringify({ ...storedUser, profile_picture: null }));
+    alert("Foto profil berhasil dihapus");
+  } catch (error) {
+    console.error("❌ Delete error:", error);
+    alert(`Gagal menghapus foto: ${error.message}`);
+  }
+};
+
 
   if (!userData) {
     return (
@@ -99,32 +147,34 @@ useEffect(() => {
         backgroundImage: "url('/background-3.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
         fontFamily: "'Poppins', sans-serif",
       }}
     >
-      <div className="bg-black bg-opacity-40 rounded-xl px-16 py-16 flex items-center gap-14 max-w-4xl w-full mx-4">
+      <div className="bg-black bg-opacity-40 rounded-xl px-10 py-14 flex items-center gap-14 max-w-4xl w-full mx-4">
         {/* Foto Profil */}
         <div className="flex flex-col items-center flex-shrink-0">
           <div className="w-40 h-40 rounded-full bg-gray-300 overflow-hidden">
-            {photo ? (
-              <img src={photo} className="w-full h-full object-cover" alt="Profile" />
-            ) : (
-              <img src="/profileicon.png" className="w-full h-full object-cover" />
-            )}
+            <img
+              src={photo || "/profileicon.png"}
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <label className="text-white font-semibold mt-3 text-sm cursor-pointer hover:underline">
+
+          <input
+            type="file"
+            id="photo-upload"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={(e) => {
+              if (e.target.files.length > 0) {
+                handlePhotoUpload(e.target.files[0]);
+              }
+            }}
+          />
+          <label htmlFor="photo-upload" className="mt-2 text-blue-400 hover:underline cursor-pointer">
             Ganti Foto
-            <input type="file" onChange={handlePhotoChange} className="hidden" accept="image/*" />
           </label>
-          {photo && (
-            <button
-              onClick={handleRemovePhoto}
-              className="text-red-300 hover:underline mt-1 text-sm"
-            >
-              Hapus Foto
-            </button>
-          )}
         </div>
 
         {/* Info User */}
@@ -145,7 +195,7 @@ useEffect(() => {
                 <button
                   onClick={() => {
                     setIsEditingName(false);
-                    setNewName(userData.name);
+                    setNewName(userData.user_name);
                   }}
                   className="text-red-400 font-semibold hover:underline"
                 >
@@ -154,7 +204,7 @@ useEffect(() => {
               </>
             ) : (
               <>
-                <h1 className="text-white font-bold text-3xl truncate">{userData.name}</h1>
+                <h1 className="text-white font-bold text-3xl truncate">{userData.user_name}</h1>
                 <button
                   onClick={() => setIsEditingName(true)}
                   aria-label="Edit name"
@@ -165,11 +215,11 @@ useEffect(() => {
               </>
             )}
           </div>
-          <p className="text-white font-semibold text-xl truncate">{userData.email}</p>
-          <div className="mt-12 flex justify-center">
+          <p className="text-white font-semibold text-xl truncate">{userData.user_email}</p>
+          <div className="mt-12">
             <button
               onClick={handleLogout}
-              className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-md w-max"
+              className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-md"
             >
               Logout
             </button>

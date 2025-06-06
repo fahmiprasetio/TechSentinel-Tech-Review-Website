@@ -1,34 +1,44 @@
 import React, { useState } from "react";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
+    user_name: "",
+    user_email: "",
+    user_password: "",
   });
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value,
-    });
-  };
+  const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.email || !form.password) {
+    const { user_name, user_email, user_password } = form;
+
+    if (!user_name || !user_email || !user_password) {
       alert("Semua field wajib diisi!");
       return;
     }
 
-    localStorage.setItem("user", JSON.stringify(form));
-    alert("Registrasi berhasil! Silakan login.");
-    navigate("/LoginPage");
+    try {
+      const response = await axios.post("https://backend-techsentinel.vercel.app/auth/register", {
+        user_name,
+        user_email,
+        user_password,
+        profile_picture:
+          "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"
+      });
+
+      console.log("Response register:", response.data);
+      alert("Registrasi berhasil! Silakan login.");
+      navigate("/LoginPage");
+    } catch (error) {
+      console.error("Register error:", error.response?.data || error);
+      alert("Gagal registrasi: " + (error.response?.data?.message || "Server error"));
+    }
   };
 
   return (
@@ -36,22 +46,19 @@ const RegisterPage = () => {
       className="min-h-screen bg-cover bg-center relative flex items-center justify-center px-4 dark:bg-black"
       style={{ backgroundImage: "url('/bg-login.png')" }}
     >
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
 
-      {/* Form Card */}
       <div className="relative z-10 bg-white dark:bg-gray-900 bg-opacity-95 dark:bg-opacity-90 rounded-2xl shadow-2xl p-8 w-full max-w-md">
         <h2 className="text-3xl font-bold text-blue-700 dark:text-blue-400 mb-6 text-center">
           Register
         </h2>
         <form className="space-y-5" onSubmit={handleRegister}>
-          {/* Nama */}
           <div>
             <label
               htmlFor="name"
               className="block text-gray-700 dark:text-gray-200 font-medium mb-2"
             >
-              Nama
+              Nama Lengkap
             </label>
             <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-2 focus-within:ring-2 focus-within:ring-blue-500">
               <FaUser className="text-gray-400 dark:text-gray-300 mr-2" />
@@ -59,14 +66,16 @@ const RegisterPage = () => {
                 type="text"
                 id="name"
                 className="w-full outline-none bg-transparent text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
-                placeholder="Nama Lengkap"
-                value={form.name}
-                onChange={handleChange}
+                placeholder="John Doe"
+                value={form.user_name}
+                onChange={(e) =>
+                  setForm({ ...form, user_name: e.target.value })
+                }
+                required
               />
             </div>
           </div>
 
-          {/* Email */}
           <div>
             <label
               htmlFor="email"
@@ -81,13 +90,15 @@ const RegisterPage = () => {
                 id="email"
                 className="w-full outline-none bg-transparent text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
                 placeholder="you@example.com"
-                value={form.email}
-                onChange={handleChange}
+                value={form.user_email}
+                onChange={(e) =>
+                  setForm({ ...form, user_email: e.target.value })
+                }
+                required
               />
             </div>
           </div>
 
-          {/* Password */}
           <div>
             <label
               htmlFor="password"
@@ -102,18 +113,20 @@ const RegisterPage = () => {
                 id="password"
                 className="w-full outline-none bg-transparent text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
                 placeholder="••••••••"
-                value={form.password}
-                onChange={handleChange}
+                value={form.user_password}
+                onChange={(e) =>
+                  setForm({ ...form, user_password: e.target.value })
+                }
+                required
               />
             </div>
           </div>
 
-          {/* Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-xl transition duration-300 shadow-sm"
           >
-            Register
+            Sign Up
           </button>
         </form>
 
@@ -123,7 +136,7 @@ const RegisterPage = () => {
             to="/LoginPage"
             className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
           >
-            Login Di sini
+            Masuk di sini
           </Link>
         </p>
       </div>

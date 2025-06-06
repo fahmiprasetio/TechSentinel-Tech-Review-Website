@@ -195,11 +195,12 @@ function RootLayout() {
              <img
   alt="Profile"
   src={
-    user?.photo
-      ? user.photo
+    user?.profile_picture
+      ? user.profile_picture
       : "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png"
   }
 />
+
             </div>
           </NavLink>
         </div>
