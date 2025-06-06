@@ -67,7 +67,7 @@ const ProfilePage = () => {
   const saveName = async () => {
     if (!newName) return alert("Nama tidak boleh kosong!");
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+      const res = await fetch(`${API_URL}/user/profile`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const ProfilePage = () => {
     formData.append("profile_picture", file);
 
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+      const res = await fetch(`${API_URL}/user/profile`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${storedUser.token}`,
@@ -108,7 +108,7 @@ const ProfilePage = () => {
 
   const handleDeletePhoto = async () => {
     try {
-      const res = await fetch("https://backend-techsentinel.vercel.app/user/profile", {
+      const res = await fetch(`${API_URL}/user/profile`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${storedUser.token}`,
